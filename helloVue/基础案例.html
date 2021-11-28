@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+       <div v-if='books.length'>
+        <table>
+            <thead style="background-color: #e9e9e9;">
+                <tr>
+                    <th></th>
+                    <th>书籍名称</th>
+                    <th>价格</th>
+                    <th>出版日期</th>
+                    <th>数量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in books" :key='item.name'>
+                    <th>{{index+1}}</th>
+                    <th>{{item.name}}</th>
+                    <th>{{item.price | showPrice}}</th>
+                    <th>{{item.date}}</th>
+                    <th><button @click= 'sub(index)'>-</button>{{item.number}} <button @click='add(index)'>+</button></th>
+                    <th><button @click='del(index)'>删除</button></th>
+                </tr>
+            </tbody>
+        </table>
+        <h2>总价：{{totalPrice | showPrice}}</h2></h2>
+       </div>
+       <div v-else>
+           <h3>购物车为空</h3>
+       </div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    books: [{
+                        name: '《算法导论》',
+                        price: 86,
+                        date: '2006-9',
+                        number: 1,
+                    },
+                {
+                    name: '《UNIX编程艺术》',
+                    price: 60,
+                    date: '2006-02',
+                    number: 1
+                },
+                {
+                    name: '《编程原理》',
+                    price: 39,
+                    date: '2008-10',
+                    number: 1
+                },
+                {
+                    name: "《代码大全》",
+                    price: 128,
+                    date: '2006-3',
+                    number: 1
+                }
+            ]
+                }
+            },
+            methods: {
+                add: function(index) {
+                    this.books[index].number ++
+                },
+                sub(index) {
+                    if(!(this.books[index].number-1 < 1))
+                        this.books[index].number --
+                    else
+                        alert(
+                            '最少为1本！'
+                        )
+                    },
+                del(index) {
+                    this.books.splice(index, 1)
+                }
+            },
+            filters: {
+                showPrice(price) {
+                    return '￥' + price.toFixed(2)
+                }
+            },
+            computed: {
+                totalPrice() {
+                   return this.books.reduce((pre,item) =>  pre+item.price *item.number ,0)
+                    // let result = 0
+                    // for( let item of this.books) {
+                    //     result += item.number*item.price
+                    // }
+                    // return result
+                }
+            }
+        })
+    </script>
+    <style>
+        table{
+            border: 1px solid #e9e9e9;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #e9e9e9;
+            border-spacing: 0;
+            padding: 10px 5px;
+        }
+    </style>
+</body>
+</html>

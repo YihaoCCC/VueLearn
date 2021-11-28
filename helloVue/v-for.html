@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <ul>
+            <li v-for="(item, index) in moives" 
+                :key="index" 
+                :class="{'current' : (isActive === index)}" 
+                @click = "changeItem(index)" > 
+                {{item}} {{index}}</li>
+        </ul>
+        <button @click="addItem">add</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    isActive: 0,
+                    moives: ['长津湖', '你的婚礼', '老男孩', '进击的巨人']  
+                }
+            },
+            methods: {
+               changeItem(index) {
+                    this.isActive = index
+
+               },
+               addItem() {
+                   this.moives.splice(2, 0, '小时代')
+               }
+            }
+        })
+    </script>
+    <style>
+        .current {
+            color: red;
+        }
+    </style>
+</body>
+</html>

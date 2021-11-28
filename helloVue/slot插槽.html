@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../vue.js"></script>
+    <div id="app">
+        {{message}}
+        <cpn> 
+            <button>按钮</button>
+            <button slot='center'>123</button></button>
+        </cpn>
+        <cpn><span>哈哈哈</span></cpn>
+        <cpn><link rel="stylesheet" href="www.baidu.com" target='_black'>baidu</cpn>
+        <cpn></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>我是子组件</h2>
+            {{name}}
+            <slot><em>这是插槽默认值</em></slot>
+            <div>
+                <!-- 具名插槽 -->
+                <slot name='left'>左边</slot>
+                <slot name='center'>中间</slot>
+                <slot name='right'>右边</slot>
+                <slot>默认</slot>
+            </div>
+        </div>
+    </template>
+    <script>
+        const app = new Vue ({
+            el: '#app',
+            data() {
+                return {
+                    message: '父组件的message：123456789'
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            name: '我是子组件的name'
+                        }
+                    }
+                }
+            },
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+</html>

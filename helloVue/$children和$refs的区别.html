@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../vue.js"></script>
+    <div id="app">
+        <cpn></cpn>
+        <button @click='getChildren'>获取当前vue组件对象$children</button></button>
+    </div>
+    <template id="cpn">
+        <h2>我是子组件</h2>
+    </template>
+    <script >
+    const cpn = {
+        template: '#cpn',
+        data() {
+            return {
+                name: '我是子组件的name'
+            }
+        },
+        
+    }
+    const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: '567890',
+                }
+            },
+            components: {
+                cpn: cpn
+            },
+            methods: {
+                getChildren() {
+                    // 每一个vue的组件都是从Vuecomponent创建出来的，打印app的this可见
+                    console.log(this)
+                    // console.log(this.$children) 
+                }
+            }
+        })
+    </script>
+</body>
+</html>

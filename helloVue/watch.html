@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../vue.js"></script>
+    <div id='app'>
+        {{message}}<br>
+        {{newMessage}}<br>
+        <input type="text" v-model='message'>
+        {{title}}
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: '234567890',
+                    title: ''
+                }
+            },
+            computed: {
+                newMessage() {
+                    return this.message + '新值'
+                }
+            },
+            watch: {
+                message(newValue, oldValue) {
+                    console.log(`新的值${newValue}，旧的值：${oldValue}`)
+                    this.title = `新的值${newValue}，旧的值：${oldValue}`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

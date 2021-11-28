@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../vue.js"></script>
+
+
+
+    <div id="app">
+        
+        <!-- <cpn v-bind:cmessage='message' :cmoives='moives'></cpn> -->
+        <!-- 默认值测试 -->
+        <cpn  :cmoives='moives' @itemclick='itemchange'></cpn>
+        {{currentMoive}}
+    </div>
+
+
+    <template id='cpn'>
+        <div>
+            <h2>我是子组件</h2>
+            {{cmessage}}
+            <ul>
+                <li v-for="item in cmoives" @click="itemclick(item)">{{item}}</li>
+            </ul>
+        </div>
+    </template>
+    <script>
+        const cpn = {
+            template: '#cpn',
+            // props: ['cmessage', 'cmoives']
+            props: {
+                // 1:类型限制
+                // cmessage: String,
+                // cmoives: Array,
+                // 2：默认值
+                cmessage: {
+                    type: String,
+                    default: '这是默认值cmessage，没传cmessage时显示'
+                },
+                cmoives :{ 
+                    type: Array,
+                    //必传属性
+                    required: true
+                }
+            },
+            methods: {
+                itemclick(item) {
+                    this.$emit('itemclick', item)
+                }
+            }
+        }
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return{ 
+                    message: '12345678',
+                    moives: ['长津湖', '我和我的祖国', '你的婚礼'],
+                    currentMoive: ''
+                }
+            },
+            components: {
+                cpn: cpn
+            },
+            methods: {
+                itemchange(item) {
+                    console.log(`当前点击的电影为：${item}`)
+                    this.currentMoive = item
+                }
+            }
+        })
+    </script>
+</body>
+</html>

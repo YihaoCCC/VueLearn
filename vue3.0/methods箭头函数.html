@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <template id='cyh'>
+        <h2>{{message}}</h2>
+        <button @click='print'>  this打印  </button>
+        <button @click='print2'>  箭头函数this打印  </button>
+        <button @click="print3($event ,'陈奕豪', 21)">v-on传参</button>
+    </template>
+    <script src="../vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            template: '#cyh',
+            data() {
+                return {
+                    message: '我是陈奕豪',
+                }
+            },
+            methods: {
+                print() {
+                    console.log(this)
+                },
+                print2: () => {
+                    console.log(this)
+                },
+                print3(name, age) {
+                    console.log(event)
+                    console.log(name + age)
+                }
+
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
