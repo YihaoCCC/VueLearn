@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="divTest">
+        <span class="testSpan">
+            123 
+        </span>
+    </div>
+    12333333333333333333333  span的padding是假的，默认span不能设置宽高，
+    <div class="blockTest">
+        <div class="test">
+
+        </div>
+        <div class="test">
+            设置了inline--block的盒子中间会有空白（外层div如果是flex会消除影响）
+        </div>
+    </div>
+    
+    
+</body>
+</html>
+<style>
+    .divTest {
+        background-color: blue;
+    }
+    .testSpan {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        padding: 30px 40px;
+        /* display: inline; */
+    }
+    .test{
+        width: 100px;
+        height: 150px;
+        background-color: red;
+        display: inline-block;
+    }
+    .blockTest {
+        display: flex;
+        justify-content: flex-start;
+    }
+</style>
