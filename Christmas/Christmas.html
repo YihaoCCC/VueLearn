@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣诞快乐</title>
+</head>
+<body>
+    <div id='chirstmasTree'>
+        
+        <div class="container">
+            <div id="clouds">
+              <div class="cloud1"></div>
+              <div class="cloud2"></div>
+              <div class="cloud3"></div>
+            </div>
+            <div id="clouds2">
+              <div class="cloud1"></div>
+              <div class="cloud2"></div>
+              <div class="cloud3"></div>
+            </div>
+          
+          </div>
+        <div class="buttonContainer">
+            <button id="showTree"> 嘿！点这里
+        </button>
+          </div>
+          <div class="santa">
+            <div class="hat"></div>
+            <div class="eyes"></div>
+            <div class="beard_left"></div>
+            <div class="beard_right"></div>
+        </div>
+       
+    </div>
+    <script>
+        let showTree  = false
+        let btnCiick = document.getElementById('showTree')
+        let treeContent = document.getElementsByClassName('santa')[0]
+        
+        btnCiick.addEventListener('click', ()=> {
+            if (!showTree) {
+                treeContent.style.display = 'block'
+                
+            } else {
+                treeContent.style.display = 'none'
+            }
+            showTree = !showTree
+        })
+    </script>
+</body>
+<style>
+     html, body
+            {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                background:#0a0a0a;
+            }
+.buttonContainer {
+    width: 140px;
+    height: 100px;
+    margin: auto;
+}
+button {
+    line-height: 100px;
+    cursor: pointer;
+}
+.container {
+  width: 100%;
+  position: relative;
+  height: 330px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+/* Clouds */
+#clouds {
+  top: 100px;
+  position: relative;
+  -webkit-animation: move 20s infinite linear;  
+  -moz-animation: move 20s infinite linear;  
+  -ms-animation: move 20s infinite linear;
+  z-index: 1;
+}
+
+#clouds2 {
+  position: relative;
+  -webkit-animation: backup 14s infinite linear;
+  -moz-animation: backup 14s infinite linear;
+  -ms-animation: backup 14s infinite linear;
+  z-index: 2;
+}
+
+.cloud1, .cloud2, .cloud3 { 
+  opacity: 1;  
+}
+
+.cloud1 {
+  width: 200px;
+  height: 60px;
+  background: #00c9ee;
+  position: absolute;
+  top: 80px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+  
+}
+
+.cloud1:after {
+  content: '';
+  position: absolute;
+  background: #00c9ee;
+  width: 80px;
+  height: 80px;
+  top: -40px;
+  left: 20px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+
+}
+
+.cloud1:before {
+  content: '';
+  position: absolute;
+  background: #00c9ee;
+  width: 100px;
+  height: 100px;
+  top: -60px;
+  right: 30px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+
+.cloud2 {
+  width: 100px;
+  height: 30px;
+  background: #00c9ee;
+  position: absolute;
+  top: 180px;
+  left: 400px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+
+.cloud2:after {
+  content: '';
+  position: absolute;
+  background: #00c9ee;
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: 10px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+
+.cloud2:before {
+  content: '';
+  position: absolute;
+  background: #00c9ee;
+  width: 50px;
+  height: 50px;
+  top: -30px;
+  right: 15px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+
+}
+
+.cloud3 {
+  width: 200px;
+  height: 60px;
+  background: #00c9ee;
+  position: absolute;
+  top: 100px;
+  left: 740px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+
+.cloud3:after {
+  content: '';
+  position: absolute;
+  background: #00c9ee;
+  width: 80px;
+  height: 80px;
+  top: -40px;
+  left: 20px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+
+.cloud3:before {
+  content: '';
+  position: absolute;
+  background: #00c9ee;
+  width: 100px;
+  height: 100px;
+  top: -60px;
+  right: 30px;
+  
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+
+@-webkit-keyframes move {
+  0% {left: 0px;}
+  49% {left: 940px; opacity: 1;}
+  50% {left: 940px; opacity: 0;}
+  51% {left: -940px; opacity: 0;} 
+  52% {left: -940px; opacity: 1;} 
+  100% {left: 0px;} 
+}
+
+@-webkit-keyframes backup {
+  0% {left: -940px;}
+  100% {left: 940px;}  
+
+}  
+
+@-moz-keyframes move {
+  0% {left: 0px;}
+  49% {left: 940px; opacity: 1;}
+  50% {left: 940px; opacity: 0;}
+  51% {left: -940px; opacity: 0;} 
+  52% {left: -940px; opacity: 1;} 
+  100% {left: 0px;} 
+}
+
+@-moz-keyframes backup {
+  0% {left: -940px;}
+  100% {left: 940px;}  
+
+}  
+
+@-ms-keyframes move {
+  0% {left: 0px;}
+  49% {left: 940px; opacity: 1;}
+  50% {left: 940px; opacity: 0;}
+  51% {left: -940px; opacity: 0;} 
+  52% {left: -940px; opacity: 1;} 
+  100% {left: 0px;} 
+}
+
+@-ms-keyframes backup {
+  0% {left: -940px;}
+  100% {left: 940px;}  
+
+}  
+
+#clouds .cloud1, #clouds .cloud2, #clouds .cloud2:after, #clouds .cloud2:before, #clouds .cloud3, #clouds .cloud1:after, #clouds .cloud1:before, #clouds .cloud3:before, #clouds .cloud3:after {
+	background: #00f1ee;
+	box-shadow: 0px 0px 20px 5px #00f1ee;	
+	-moz-box-shadow: 0px 0px 20px 5px #00f1ee;	
+	-webkit-box-shadow: 0px 0px 20px 5px #00f1ee;
+}
+button {
+ text-decoration: none;
+ position: absolute;
+ border: none;
+ font-size: 14px;
+ font-family: inherit;
+ color: #fff;
+ width: 9em;
+ height: 3em;
+ line-height: 2em;
+ text-align: center;
+ background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+ background-size: 300%;
+ border-radius: 30px;
+ z-index: 1;
+}
+
+button:hover {
+ animation: ani 8s linear infinite;
+ border: none;
+}
+
+@keyframes ani {
+ 0% {
+  background-position: 0%;
+ }
+
+ 100% {
+  background-position: 400%;
+ }
+}
+
+button:before {
+ content: '';
+ position: absolute;
+ top: -5px;
+ left: -5px;
+ right: -5px;
+ bottom: -5px;
+ z-index: -1;
+ background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+ background-size: 400%;
+ border-radius: 35px;
+ transition: 1s;
+}
+
+button:hover::before {
+ filter: blur(20px);
+}
+
+button:active {
+ background: linear-gradient(32deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+}
+body {
+	/* background-color: #E5375D; */
+}
+
+.santa {
+	height: 300px;
+	width: 200px;
+	position: relative;
+	margin: 50px auto 0;
+    display: none;
+}
+
+.santa .hat {
+	position: absolute;
+	left: 50%;
+	margin: 0 0 0 -50px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 50px 110px 50px;
+	border-color: transparent transparent #a40000 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #a40000 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');	
+}
+
+.santa .hat:after {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 40px 0 0 100px;
+	border-color: transparent transparent transparent #a40000;
+	
+	-webkit-transform: rotate(15deg);
+	-webkit-transform-origin: top left;
+	
+	-moz-transform: rotate(15deg);
+	-moz-transform-origin: top left;
+	
+	-ms-transform: rotate(15deg);
+	-ms-transform-origin: top left;
+	
+	-o-transform: rotate(15deg);
+	-o-transform-origin: top left;
+	
+	transform: rotate(15deg);
+	transform-origin: top left;
+}
+
+.santa .hat:before {
+	content: '';
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: #fff;
+	left: 75px;
+	top: 55px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	z-index: 1;
+}
+
+.santa .eyes {
+	width: 110px;
+	height: 24px;
+	background: #fff;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	top: 100px;
+	left: 50%;
+	margin: 0 0 0 -55px;
+	position: absolute;
+}
+
+.santa .eyes:after {
+	position: absolute;
+	content: '';
+	width: 16px;
+	height: 16px;
+	background: white;
+	top: 32px;
+	left: 20px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.santa .eyes:before {
+	position: absolute;
+	content: '';
+	width: 16px;
+	height: 16px;
+	background: white;
+	top: 32px;
+	right: 20px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.santa .beard_left, .santa .beard_right {
+	position: absolute;
+	height: 120px;
+	width: 60px;
+	bottom: 0;
+	left: 50%;
+	margin: 0 0 0 -60px;
+	overflow: hidden;
+}
+
+.santa .beard_right {
+	margin: 0;
+}
+
+.santa .beard_left:after {
+	content: '';
+	position: absolute;
+	background: white;
+	width: 150px;
+	height: 150px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	bottom: 0px;
+	left: 0;
+}
+
+.santa .beard_left:before {
+	content: '';
+	position: absolute;
+	background-color: #e53838;
+	width: 73px;
+	height: 50px;
+	border-radius: 50%;
+	top: -45px;
+	left: 2px;
+	z-index: 5;
+}
+
+.santa .beard_right:after {
+	content: '';
+	position: absolute;
+	background-color: #e53838;
+	width: 73px;
+	height: 50px;
+	border-radius: 50%;
+	top: -45px;
+	right: 2px;
+	z-index: 5;
+}
+
+.santa .beard_right:before {
+	content: '';
+	position: absolute;
+	background: white;
+	width: 150px;
+	height: 150px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	bottom: 0px;
+}
+
+</style>
+</html>
