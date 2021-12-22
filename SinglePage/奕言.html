@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奕言</title>
+</head>
+<body>
+    <div class="main">
+        <h1>你好，我是陈一亿</h1>
+        <div class="content">
+            <div class="data">
+                Today
+                <br>
+                一言
+            </div>
+            <div class="sentence">
+                <span class="sentence1"></span>
+                <br>
+                <div class="actor1"> </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="data">
+                Today
+                <br>
+                一则舔狗日记
+            </div>
+            <div class="sentence">
+                <span class="sentence2">
+
+                </span>
+                <br>
+                
+            </div>
+        </div>
+        <div class="content">
+            <div class="data">
+                Today
+                <br>
+                一个彩虹屁
+            </div>
+            <div class="sentence">
+                <span class="sentence3">
+
+                </span>
+                <br>
+            </div>
+        </div>
+        <div class="content">
+            <div class="data">
+                Today
+                <br>
+                一个笑话
+            </div>
+            <div class="sentence">
+                <span class="sentence4">
+
+                </span>
+                <br>
+            </div>
+        </div>
+        <button id="changeBackGroundImg"><span>更换背景</span></button>
+    </div>
+</body>
+<script>
+    let imgIndex = 0
+    let imgList = []
+    fetch('https://api.muxiaoguo.cn/api/yiyan')
+        .then(response => response.json())
+            .then(data => {
+                document.getElementsByClassName('sentence1')[0].innerHTML = data.data.constant
+                let actor = `--------${data.data.source}`
+                document.getElementsByClassName('actor1')[0].innerHTML = actor
+    });
+    fetch('https://api.muxiaoguo.cn/api/tiangourj')
+        .then(response => response.json())
+            .then(res => {
+                document.getElementsByClassName('sentence2')[0].innerHTML = res.data.comment
+
+            });
+    fetch('https://api.muxiaoguo.cn/api/caihongpi')
+            .then(response => response.json())
+                .then(res => {
+                    document.getElementsByClassName('sentence3')[0].innerHTML = res.data.comment
+                });
+    fetch('https://api.muxiaoguo.cn/api/bing?id=today&pn=7')
+                .then(response => response.json())
+                    .then(res => {
+                        imgList = res.data
+                        document.body.style.backgroundImage = 'url('+`${res.data[imgIndex].imgurl}`+')'
+                    });
+    fetch('https://api.muxiaoguo.cn/api/xiaohua')
+                .then(response => response.json())
+                    .then(res => {
+                        document.getElementsByClassName('sentence4')[0].innerHTML = res.data.content
+                    } )
+    document.getElementById('changeBackGroundImg').addEventListener('click' , () => {
+        imgIndex ++
+        document.body.style.backgroundImage = 'url('+`${imgList[imgIndex].imgurl}`+')'
+    })
+</script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-image: url('https://cn.bing.com/th?id=OHR.SiegeofCusco_ZH-CN9108219313_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp');
+}
+.main {
+    color: #fff;
+    min-height: 995px;
+    padding-top: 100px;
+    box-sizing: border-box;
+    
+}
+h1 {
+  padding: 8px 100px;
+  width: 400px;
+  margin: auto;
+  border-radius: 20px;
+  letter-spacing: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: rgba(102, 102, 102, 0.527);
+  text-align: center;
+}
+.content {
+    margin: 50px auto;
+    width: 1190px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;   
+}
+
+.data {
+    width: 300px;
+    margin-right: 20px;
+    background-color: rgba(90, 88, 88, 0.8);
+    text-align: center;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.sentence {
+    width: 800px;
+    box-sizing: border-box;
+    background-color: rgba(90, 88, 88, 0.8);
+    padding: 20px 30px;
+    transition: all .5s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.sentence:hover {
+    transform: translateY(-5px);
+    background-color: rgba(136, 129, 129, 0.699);
+}
+.sentence2 {
+    letter-spacing: 4px;
+}
+.actor1 {
+    float: right;
+}
+button {
+ outline: none;
+ cursor: pointer;
+ border: none;
+ padding: 0.9rem 2rem;
+ margin: 0;
+ font-family: inherit;
+ font-size: inherit;
+ position: fixed;
+ top: 150px;
+ right: 200px;
+ display: inline-block;
+ letter-spacing: 0.05rem;
+ font-weight: 700;
+ font-size: 17px;
+ border-radius: 500px;
+ overflow: hidden;
+ background: #abcaab;
+ color: ghostwhite;
+}
+
+button span {
+ position: relative;
+ z-index: 10;
+ transition: color 0.4s;
+}
+
+button:hover span {
+ color: rgba(0, 0, 0, 0.616);
+}
+
+button::before,
+button::after {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 0;
+}
+
+button::before {
+ content: "";
+ background: rgba(0, 0, 0, 0.616);;
+ width: 120%;
+ left: -10%;
+ transform: skew(30deg);
+ transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+button:hover::before {
+ transform: translate3d(100%, 0, 0);
+}
+
+
+</style>
+</html>
