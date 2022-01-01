@@ -2,7 +2,9 @@
   <div id="app">
     <el-button type="primary" @click="completeCard" v-if="compomentName === '' ">去填表</el-button>
     <el-button type="primary" @click="compomentName = '' " v-else >回到主页</el-button>
-    <component :is="compomentName"></component>
+    <transition name="test" mode="out-in" appear >
+        <component :is="compomentName"></component>
+    </transition>
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
   },
   methods: {
     completeCard() {
-      this.compomentName = 'HIVReport'
+      this.compomentName = 'report-card'
     }
   }
 }
@@ -36,5 +38,14 @@ export default {
 }
 #app {
   text-align: center;
+}
+.test-leave-to,
+.test-enter-from {
+  opacity: 0;
+  transform: translateY(-100) scale(0.5);
+}
+.test-enter-active,
+.test-leave-active {
+  transition: all .5s ease;
 }
 </style>

@@ -45,126 +45,125 @@
                         <div class="id-card-box">
                             <input type="text" name="idCard"
                             :maxlength='1'
-                            @keyup.enter="onClickSearch"
                             ref="input1"
                             @keyup="nextFocus(1)" 
                             >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(1)"
                                     ref="input2"
                                     @keyup="nextFocus(2)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(2)"
                                     ref="input3"
                                     @keyup="nextFocus(3)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(3)"
                                     ref="input4"
                                     @keyup="nextFocus(4)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(4)"
                                     ref="input5"
                                     @keyup="nextFocus(5)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(5)"
                                     ref="input6"
                                     @keyup="nextFocus(6)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(6)"
                                     ref="input7"
                                     @keyup="nextFocus(7)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(7)"
                                     ref="input8"
                                     @keyup="nextFocus(8)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(8)"
                                     ref="input9"
                                     @keyup="nextFocus(9)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(9)"
                                     ref="input10"
                                     @keyup="nextFocus(10)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(10)"
                                     ref="input11"
                                     @keyup="nextFocus(11)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(11)"
                                     ref="input12"
                                     @keyup="nextFocus(12)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(12)"
                                     ref="input13"
                                     @keyup="nextFocus(13)"
                                 >
                         </div><div class="id-card-box">
                            <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(13)"
                                     ref="input14"
                                     @keyup="nextFocus(14)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(14)"
                                     ref="input15"
                                     @keyup="nextFocus(15)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(15)"
                                     ref="input16"
                                     @keyup="nextFocus(16)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(16)"
                                     ref="input17"
                                     @keyup="nextFocus(17)"
                                 >
                         </div><div class="id-card-box">
                             <input type="text" name="idCard"
                                     maxlength=1 
-                                    @keyup.enter="onClickSearch"
+                                    @keyup.delete="preFocus(17)"
                                     ref="input18"
                                     @keyup="nextFocus(18)"
                                 >
@@ -181,7 +180,7 @@
                 <el-col :span="10">
                     <span>出生日期 * ：</span>
                     <div class="content-box">
-                        <el-input placeholder="请输入出生日期" v-model="form.born"></el-input>
+                        <el-input v-model="form.born" disabled></el-input>
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -516,8 +515,9 @@ export default {
             form: {
                 name: '',         // 患者姓名  1 代表必填
                 parentName: '',   // 患儿家长姓名
+                IdCardNumber: '', //身份证号
                 sex: 'man',       // 性别   1
-                born: '',         // 出生日期 1
+                born: '请输入完整的身份证号',         // 出生日期 1
                 realAge: '',      // 实足年龄 
                 ageUnit: '',      // 年龄单位
                 address: '',      // 工作地址  
@@ -546,24 +546,13 @@ export default {
             }
         }
     },
-    computed: {
-        idCardNumber() {
-            let idCard=''
-            let inputels = document.getElementsByName('idCard')
-            for (let i = 0; i< inputels.length; i++) {
-                idCard += inputels[i].value
-            }
-            return idCard
-        }
-    },
     methods: {
         submit() {
-            
-            let { name, sex, born, region, province, city, district, town, personType, disaseType, attackTime, diagnose, Adisease, Bdisease, Cdisease, doctor, CompleteCardTime } = this.form
-            if(this.idCardNumber) {
+            let { IdCardNumber, name, sex, born, region, province, city, district, town, personType, disaseType, attackTime, diagnose, Adisease, Bdisease, Cdisease, doctor, CompleteCardTime } = this.form
+            if(IdCardNumber) {
                 if( name && sex && born && region && province && city && district && town && personType && disaseType&& attackTime && diagnose && Adisease && Bdisease && Cdisease && doctor && CompleteCardTime  ) {
                     this.$message.success('提交报告成功!')
-                    console.log('身份证号：'+this.idCardNumber)
+                    console.log('身份证号：'+IdCardNumber)
                     console.log('其他内容：')
                     console.log(this.form)
                     if(Bdisease === 2) {
@@ -577,6 +566,10 @@ export default {
             }
             
         },
+        preFocus(index) {
+            const nextInput = this.$refs[`input${index}`];
+            nextInput.focus();  
+        },
         nextFocus(index) {
             const curInput = this.$refs[`input${index}`];
             const nextInput = this.$refs[`input${index + 1}`];
@@ -585,7 +578,37 @@ export default {
             if (nextInput && !nextInput.value) {
                 nextInput.focus();
             }
+            console.log('计算身份证号')
+            this.getIdCard()
+            if(this.form.IdCardNumber.length === 18  || this.form.IdCardNumber.length === 15) {
+                console.log('计算出生年月')
+                this.getBirthdayFromIdCard(this.form.IdCardNumber)
+            }
         }
+        },
+        getBirthdayFromIdCard(idCard) {  
+            let birthday  
+            if(idCard != null && idCard != ""){  
+                if(idCard.length == 15){  
+                    birthday = "19"+idCard.substr(6,6);
+                    birthday = birthday.replace(/(.{4})(.{2})(.{2})/,"$1年$2月$3日");  
+                this.form.born = birthday  
+                } else if(idCard.length == 18){  
+                    birthday = idCard.substr(6,8);
+                    birthday = birthday.replace(/(.{4})(.{2})(.{2})/,"$1年$2月$3日");  
+                this.form.born = birthday  
+                }   
+            }
+              
+        },
+        getIdCard() {
+            let idCard=''
+            let inputels = document.getElementsByName('idCard')
+            for (let i = 0; i< inputels.length; i++) {
+                idCard += inputels[i].value
+            }
+            console.log(idCard)
+            this.form.IdCardNumber = idCard
         }
     }
     
