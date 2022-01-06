@@ -1,36 +1,49 @@
 <template>
     <div>
-        <h3>watchEffect监控数据变化</h3>
+        <h3>watch监控数据变化</h3>
+        {{cyh.friends.name}}
+        <button @click="changeCyhName">对象中数据监控</button>
         {{name}}
-        <button @click="changeName">改变名字</button>
-        {{height}}
-        <button @click="changeAge">终止监控</button>
+        <button @click="changeName">普通数据监控</button>
     </div>
 </template>
 <script>
-import {ref, watchEffect} from 'vue'
+import {watch, ref, reactive} from 'vue'
 export default {
     setup() {
+        const cyh = reactive({
+            name: 'cyh-name',
+            age: 18,
+            friends: {
+                name: 'kobe'
+            }
+        })
         const name = ref('cyh')
-        const height = ref(1.88)
-        const changeName = () => name.value = 'cyh - rich'
-        const changeAge = () => {
-           if(height.value > 3) {
-               stop()
-           }
-           height.value ++
-        }
-        const stop =  watchEffect(() => {
-            console.log('name:'+ name.value)
-            console.log('height:' + height.value)
+        // 默认传入reactive对象时候是深度监听
+        watch(() => cyh.friends.name, (value, oldValue) => {
+            console.log(value)
+            console.log(oldValue)
+        },{
+            deep: true,
+            immediate: false
         })
 
-        return {
-            name,
-            height,
-            changeAge,
-            changeName
+
+        const changeCyhName = () => {
+            cyh.friends.name = 'cyh-rich'
+        } 
+        const changeName = () => {
+            name.value = 'cyh-rich'
         }
-    }
+           
+        
+        
+        return {
+            cyh,
+            name,
+            changeName,
+            changeCyhName
+        }
+    },
 }
 </script>

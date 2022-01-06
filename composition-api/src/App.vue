@@ -4,7 +4,8 @@
   <ref-api></ref-api>
   <read-only></read-only>
   <Computed></Computed>
-  <Watch></Watch>
+  <watch-effect></watch-effect>
+  <watch></watch>
 </template>
 
 <script>
@@ -14,6 +15,7 @@ import Composition from './components/Composition.vue'
 import RefApi from './components/RefApi.vue'
 import ReadOnly from './components/ReadOnly.vue'
 import Computed from './components/Computed.vue'
+import WatchEffect from './components/WatchEffect.vue'
 import Watch from './components/Watch.vue'
 
 export default {
@@ -24,7 +26,8 @@ export default {
    RefApi,
    ReadOnly,
    Computed,
-   Watch
+   WatchEffect,
+    Watch
   }
 }
 </script>
