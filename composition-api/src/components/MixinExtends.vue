@@ -8,10 +8,17 @@
 import {mixinDemo} from '../mixinjs/mixin.js'
 export default {
     mixins: [mixinDemo],
-    data() {
+    setup() {
+        const message = ' data中重名优先使用组件内的值1'
         return {
-            message: ' data中重名优先使用组件内的值'
+            message
         }
-    }
+    },
+    // data() {
+    //     return {
+    //         message: ' data中重名优先使用组件内的值'
+    //     }
+    // }
+    
 }
 </script>

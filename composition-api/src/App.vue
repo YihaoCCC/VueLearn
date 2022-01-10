@@ -1,11 +1,21 @@
 <template>
-  <mixin-extends></mixin-extends>
-  <Composition></Composition>
-  <ref-api></ref-api>
-  <read-only></read-only>
-  <Computed></Computed>
-  <watch-effect></watch-effect>
-  <watch></watch>
+<div style="display:flex;justify-content: space-between">
+  <div class="left">
+      <mixin-extends></mixin-extends>
+      <Composition></Composition>
+      <ref-api></ref-api>
+      <read-only></read-only>
+      <Computed></Computed>
+      <watch-effect></watch-effect>
+      <watch></watch>
+      <provider></provider>
+  </div>
+  <div class="right">
+      <use-counter></use-counter>
+  </div>
+</div>
+  
+  
 </template>
 
 <script>
@@ -17,6 +27,8 @@ import ReadOnly from './components/ReadOnly.vue'
 import Computed from './components/Computed.vue'
 import WatchEffect from './components/WatchEffect.vue'
 import Watch from './components/Watch.vue'
+import Provider from './components/Provider.vue'
+import UseCounter from './components/useCounter.vue'
 
 export default {
   name: 'App',
@@ -27,7 +39,9 @@ export default {
    ReadOnly,
    Computed,
    WatchEffect,
-    Watch
+    Watch,
+    Provider,
+    UseCounter
   }
 }
 </script>
@@ -40,5 +54,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.left {
+  width: 50%;
+}
+.right {
+  width: 50%;
+  height: 500px;
+
+
 }
 </style>

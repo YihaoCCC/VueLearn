@@ -1,22 +1,25 @@
 <template>
   <div id="app">
-    <el-button type="primary" @click="completeCard" v-if="compomentName === '' ">去填表</el-button>
+    <!-- <el-button type="primary" @click="completeCard" v-if="compomentName === '' ">去填表</el-button>
     <el-button type="primary" @click="compomentName = '' " v-else >回到主页</el-button>
     <transition name="test" mode="out-in" appear >
         <component :is="compomentName"></component>
-    </transition>
+    </transition> -->
+    <healthy-report></healthy-report>
   </div>
 </template>
 
 <script>
-import ReportCard from './components/ReportCard.vue'
-import HIVReport from './components/HIVReport'
+import HealthyReport from './components/HealthyReport.vue'
+// import ReportCard from './components/ReportCard.vue'
+// import HIVReport from './components/HIVReport'
 
 export default {
   name: 'App',
   components: {
-    ReportCard,
-    HIVReport
+    HealthyReport
+    // ReportCard,
+    // HIVReport
   },
   data() {
     return {

@@ -1,0 +1,967 @@
+<template>
+  <div class="report-card">
+      <!-- 报告单头部 -->
+    <div class="card-title">
+        <h1 style="color:#666;margin-bottom:15px" >新疆医科大学第五附属医院</h1>
+        <h2 >急诊留观/抢救患者护理评估与健康教育记录单</h2>
+        <br>
+        <!-- 基础信息 -->
+        <el-row >
+            <el-col :span="5">
+                    <span>姓名：</span>
+                    <div class="input-box">
+                        <el-input placeholder="请输入姓名" v-model="form.name"></el-input>
+                    </div>
+            </el-col>
+            <el-col :span="5">
+                    <span>就诊号：</span>
+                    <div class="input-box">
+                        <el-input placeholder="请输入就诊号" v-model="form.diagnosisNo"></el-input>
+                    </div>
+            </el-col>
+            <el-col :span="5">
+                    <span>床号：</span>
+                    <div class="input-box">
+                        <el-input placeholder="请输入床号" v-model="form.bedNo"></el-input>
+                    </div>
+            </el-col>
+            <el-col :span="4">
+                    <span>性别：</span>
+                    <div class="input-box">
+                        <el-select v-model="form.sex" placeholder="请选择">
+                            <el-option label="男" value="man"> </el-option>
+                            <el-option label="女" value="woman"> </el-option>
+                        </el-select>
+                    </div>
+            </el-col>
+            <el-col :span="5">
+                    <span>年龄：</span>
+                    <div class="input-box">
+                        <el-input placeholder="请输入年龄（岁）" v-model="form.name"></el-input>
+                    </div>
+            </el-col>
+            
+        </el-row>
+        <br>
+        <!-- 时间 -->
+         <el-row :gutter="10">
+                <el-col :span="24">
+                    <span>入科时间：</span>
+                    <div class="input-box">
+                        <el-date-picker
+                            v-model="form.sureDefineteTime"
+                            type="datetime"
+                            placeholder="选择病人入科时间"
+                            format="yyyy 年 MM 月 dd 日 HH 时 mm 分 ss 秒"
+                            value-format="yyyy-MM-dd HH:mm:ss">
+                        </el-date-picker>
+                    </div>
+                </el-col>
+        </el-row>
+    </div>
+    <!-- 报告卡片内容 -->
+    <div class="card-content">
+        <div class="item-content">
+            <div class="title">
+                <h4>一般资料</h4>
+            </div>
+            <div class="item-detail">
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                    <span>入院方式：</span>
+                        <el-radio v-model="form.hospitalType" label="步行">步行</el-radio>
+                        <el-radio v-model="form.hospitalType" label="轮椅">轮椅</el-radio>
+                        <el-radio v-model="form.hospitalType" label="平车">平车</el-radio>
+                        <el-radio v-model="form.hospitalType" label="扶入">扶入</el-radio>
+                        <el-radio v-model="form.hospitalType" label="其他">其他</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>过敏史：</span>
+                        <el-radio v-model="form.allergy" :label="1">无</el-radio>
+                        <el-radio v-model="form.allergy" :label="2">有</el-radio>
+                        <span>药物 :</span>
+                        <div class="input-box-small" style="margin-right: 20px">
+                            <el-input placeholder="药物名称" v-model="form.allergyName"></el-input>
+                        </div>
+                        <el-radio v-model="form.allergy" :label="3">其他</el-radio>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <!-- 基础评估 -->
+        <div class="item-content">
+            <div class="title">
+                <h4>基础评估</h4>
+            </div>
+            <div class="item-detail">
+                <el-row :gutter="10">
+                    <el-col :span="4">
+                        <span>T</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="体温" v-model="form.temprature"></el-input>
+                        </div>
+                         ℃
+                    </el-col>
+                    <el-col :span="4">
+                        <span>P</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="脉搏" v-model="form.pulse"></el-input>
+                        </div>
+                         次/分
+                    </el-col>
+                    <el-col :span="4">
+                        <span>R</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="呼吸" v-model="form.respiration"></el-input>
+                        </div>
+                         次/分
+                    </el-col>
+                    <el-col :span="4">
+                        <span>Bp</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="血压" v-model="form.blood"></el-input>
+                        </div>
+                         mmHg
+                    </el-col>
+                    <el-col :span="4">
+                        <span>体重：</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="心率" v-model="form.name"></el-input>
+                        </div>
+                         Kg
+                    </el-col>
+                    <el-col :span="4">
+                        <span>身高：</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="身高" v-model="form.name"></el-input>
+                        </div>
+                         cm
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>意识：</span>
+                        <el-radio v-model="form.awareness" :label="1">清醒</el-radio>
+                        <el-radio v-model="form.awareness" :label="2">嗜睡</el-radio>
+                        <el-radio v-model="form.awareness" :label="3">烦躁</el-radio>
+                        <el-radio v-model="form.awareness" :label="4">昏睡</el-radio>
+                        <el-radio v-model="form.awareness" :label="5">昏迷</el-radio>
+                        <el-radio v-model="form.awareness" :label="6">丧失</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>语言沟通：</span>
+                        <el-radio v-model="form.communicate" :label="1">正常</el-radio>
+                        <el-radio v-model="form.communicate" :label="2">障碍（沟通困难）</el-radio>
+                        <el-radio v-model="form.communicate" :label="3">失语</el-radio>
+                        <el-radio v-model="form.communicate" :label="4">不能评估</el-radio>
+                        <el-radio v-model="form.communicate" :label="5">其他</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>视力：</span>
+                        <el-radio v-model="form.vision" :label="1">正常</el-radio>
+                        <el-radio v-model="form.vision" :label="2">近视</el-radio>
+                        <el-radio v-model="form.vision" :label="3">远视</el-radio>
+                        <el-radio v-model="form.vision" :label="4">失明</el-radio>
+                        <el-radio v-model="form.vision" :label="5">不能评估</el-radio>
+                        <el-radio v-model="form.vision" :label="6">其他</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>听力：</span>
+                        <el-radio v-model="form.listen" :label="1">正常</el-radio>
+                        <el-radio v-model="form.listen" :label="2">弱听</el-radio>
+                        <el-radio v-model="form.listen" :label="3">失聪</el-radio>
+                        <el-radio v-model="form.listen" :label="4">其他</el-radio>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <!-- 跌倒因素评估 -->
+        <div class="item-content">
+            <div class="title">
+                <h4>跌倒/坠床危险因素评估</h4>
+            </div>
+            <div class="item-detail">
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>近三月跌倒/坠床史/视觉障碍：</span>
+                        <el-radio v-model.number="form.obstacle" :label="0">无（0分）</el-radio>
+                        <el-radio v-model.number="form.obstacle" :label="25">有（25分）</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>超过一个医学诊断：</span>
+                        <el-radio v-model.number="form.oneMonth" :label="0">无（0分）</el-radio>
+                        <el-radio v-model.number="form.oneMonth" :label="15">有（15分）</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>使用助行器具：</span>
+                        <el-radio v-model.number="form.help" :label="0">没有需要/完全卧床（0分）</el-radio>
+                        <el-radio v-model.number="form.help" :label="15">拐杖/学步车（15分）</el-radio>
+                        <el-radio v-model.number="form.help" :label="30">扶家具/墙体等行走（30分）</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>静脉输液/置管/使用药物：</span>
+                        <el-radio v-model.number="form.drug" :label="0">无（0分）</el-radio>
+                        <el-radio v-model.number="form.drug" :label="20">有（20分）</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>步态：</span>
+                        <el-radio v-model.number="form.stepSize" :label="0">正常/卧床/轮椅（0分）</el-radio>
+                        <el-radio v-model.number="form.stepSize" :label="10">≥70岁/乏力/体位性低血压（10分）</el-radio>
+                        <el-radio v-model.number="form.stepSize" :label="20">失调/不平衡/头晕/眩晕（20分）</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>精神状况：</span>
+                        <el-radio v-model.number="form.Spirit" :label="0">有自知力（0分）</el-radio>
+                        <el-radio v-model.number="form.Spirit" :label="15">无自控力/意识障碍/躁动不安/沟通障碍/睡眠障碍（15分）</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>总分：</span>
+                        <div style="display:inline-block;width: 20%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                            <el-input placeholder="风险总分" v-model="fallRisk" disabled></el-input>
+                        </div>
+                        分（评分≥45分，提示有跌倒坠床风险）
+                        <span style="color:#E12429" v-show="fallRisk > 45 ? true : false" > 有跌倒坠床风险 </span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="12">
+                        <span>跌倒坠床风险：</span>
+                        <el-radio v-model="form.risk" :label="0">无</el-radio>
+                        <el-radio v-model="form.risk" :label="1">有</el-radio>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>通知医生：</span>
+                        <el-radio v-model="form.riskNotice" :label="0">否</el-radio>
+                        <el-radio v-model="form.riskNotice" :label="1">是
+                            <div class="input-box-small">
+                                <el-input placeholder="通知医生" v-model="form.riskDoctor"></el-input>
+                            </div>
+                        </el-radio>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <!-- 疼痛评估 -->
+        <div class="item-content">
+            <div class="title">
+                <h4>疼痛评估</h4>
+            </div>
+            <div class="item-detail">
+                <el-row :gutter="10">
+                    <el-col :span="12">
+                        <span>疼痛：</span>
+                        <el-radio v-model="form.pain" :label="0">无</el-radio>
+                        <el-radio v-model="form.pain" :label="1">有</el-radio>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>评分：</span>
+                         <div class="input-box-small" >
+                            <el-input placeholder="评分" v-model.number="form.evaluateNumber"></el-input>
+                        </div>
+                        分
+                    </el-col>
+                 </el-row>
+                 <el-row :gutter="10">
+                     <el-col :span="24">
+                        <span>评估工具：</span>
+                        <el-radio v-model="form.evaluate" label="数字等级评分NRS">数字等级评分NRS</el-radio>
+                        <el-radio v-model="form.evaluate" label="面部表情量表FPS">面部表情量表FPS</el-radio>
+                        <el-radio v-model="form.evaluate" label="视觉模拟法VAS">视觉模拟法VAS </el-radio>
+                        <el-radio v-model="form.evaluate" label="FLACC">FLACC </el-radio>
+                        <el-radio v-model="form.evaluate" label="CPOT">CPOT </el-radio>
+                     </el-col>
+                 </el-row>
+                <el-col :span="24">
+                        <span>通知医生：</span>
+                        <el-radio v-model="form.painNotice" :label="0">否</el-radio>
+                        <el-radio v-model="form.painNotice" :label="1">是
+                            <div class="input-box-small">
+                                <el-input placeholder="通知医生" v-model="form.painDoctor"></el-input>
+                            </div>
+                            <span>（评分≥4分，告知医生）</span>
+                        </el-radio> 
+                </el-col>
+            </div>
+        </div>
+        <!-- 压疮危险因素评估 -->
+        <div class="item-content">
+            <div class="title">
+                <h4>压疮危险因素评估</h4>
+            </div>
+            <div class="item-detail">
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>感知能力：</span>
+                        <el-radio v-model="form.perception" :label="1">完全受限1分</el-radio>
+                        <el-radio v-model="form.perception" :label="2">非常受限2分</el-radio>
+                        <el-radio v-model="form.perception" :label="3">轻微受限3分</el-radio>
+                        <el-radio v-model="form.perception" :label="4">无损害4分</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                   <el-col :span="24">
+                        <span>潮湿度：</span>
+                        <el-radio v-model="form.damp" :label="1">持续潮湿1分</el-radio>
+                        <el-radio v-model="form.damp" :label="2">非常潮湿2分</el-radio>
+                        <el-radio v-model="form.damp" :label="3">偶尔潮湿3分</el-radio>
+                        <el-radio v-model="form.damp" :label="4">罕见潮湿4分</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                     <el-col :span="24">
+                        <span>活动能力：</span>
+                        <el-radio v-model="form.active" :label="1">卧床不起1分</el-radio>
+                        <el-radio v-model="form.active" :label="2">能坐轮椅2分</el-radio>
+                        <el-radio v-model="form.active" :label="3">扶助行走3分</el-radio>
+                        <el-radio v-model="form.active" :label="4">活动自如4分</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                     <el-col :span="24">
+                        <span>移动能力：</span>
+                        <el-radio v-model="form.move" :label="1">完全受限1分</el-radio>
+                        <el-radio v-model="form.move" :label="2">重度受限2分</el-radio>
+                        <el-radio v-model="form.move" :label="3">轻度受限3分</el-radio>
+                        <el-radio v-model="form.move" :label="4">不受限4分</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>营养摄取能力：</span>
+                        <el-radio v-model="form.Nutrition" :label="1">非常差1分</el-radio>
+                        <el-radio v-model="form.Nutrition" :label="2">可能不足2分</el-radio>
+                        <el-radio v-model="form.Nutrition" :label="3">充足3分</el-radio>
+                        <el-radio v-model="form.Nutrition" :label="4">良好4分</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                     <el-col :span="24">
+                        <span>摩擦力/剪切力：</span>
+                        <el-radio v-model="form.friction" :label="1">存在问题1分</el-radio>
+                        <el-radio v-model="form.friction" :label="2">潜在问题2分</el-radio>
+                        <el-radio v-model="form.friction" :label="3">不存在问题3分</el-radio>
+                        <el-radio v-model="form.friction" :label="4">良好4分</el-radio>
+                    </el-col>
+                </el-row>
+                 <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>总分：</span>
+                        <div style="display:inline-block;width: 20%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                         <el-input placeholder="总分" v-model.number="ballastRisk" disabled></el-input>
+                        </div>
+                        分（评分≤18分，提示有压疮风险）
+                        <span style="color:#E12429" v-show="ballastRisk <= 18 ? true : false"  > 有压疮风险 </span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="12">
+                        <span>压疮风险：</span>
+                        <el-radio v-model="form.ballast" :label="0">无</el-radio>
+                        <el-radio v-model="form.ballast" :label="1">有</el-radio>
+                    </el-col>
+                    <el-col :span="12">
+                        <span> 带入压疮：</span>
+                        <el-radio v-model="form.withBallast" :label="1">有</el-radio>
+                        <el-radio v-model="form.withBallast" :label="2">无</el-radio>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <!-- 营养风险评估 -->
+        <div class="item-content">
+            <div class="title">
+                <h4>营养风险评估</h4>
+            </div>
+            <div class="item-detail">
+                <h4 style="margin-top:10px">1.营养状况得分：（以下（1）、（2）、（3）三项取最高分）</h4>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>
+                            (1) 人体测量：BMI
+                        </span>
+                        <div class="input-box-small">
+                            <el-input placeholder="BMI" v-model.number="form.BMI"></el-input>
+                        </div>
+                        <span> Kg / M2 ( 小于 18.5，3分）</span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>
+                           (2) 近期（1-3个月）体重是否下降
+                        </span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <el-radio v-model="form.weight" :label="0">0分：体重无明显改变</el-radio>
+                        <el-radio v-model="form.weight" :label="1">1分：3个月内体重减轻>5%</el-radio>
+                        <el-radio v-model="form.weight" :label="2">2分：2个月内体重减轻>5%</el-radio>
+                        <el-radio v-model="form.weight" :label="3">3分：1个月内体重减轻>5% </el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>
+                           （3）1周内进食量是否减少
+                        </span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <el-radio v-model="form.eat" :label="0">0分：否</el-radio>
+                        <el-radio v-model="form.eat" :label="1">1分：较从前减少25%～50%</el-radio>
+                        <el-radio v-model="form.eat" :label="2">2分：较从前减少50%～75%</el-radio>
+                        <el-radio v-model="form.eat" :label="3">3分：较从前减少75%～100% </el-radio>
+                    </el-col>
+                </el-row>
+                <h4 style="margin-top:10px">2.影响营养状况的疾病状况得分</h4>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <el-radio v-model="form.healthDiseaseScore" :label="0">0分：营养素需要量和正常人一样</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <el-radio v-model="form.healthDiseaseScore" :label="1">1分：髋部骨折；长期血液透析；COPD；肿瘤；糖尿病；慢性疾病（如肝硬化）急性发作或作或有新并发症</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <el-radio v-model="form.healthDiseaseScore" :label="2">2分：大的腹部外科手术；卒中（进食障碍者）；肺部严重感染；恶性血液病</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <el-radio v-model="form.healthDiseaseScore" :label="3">3分：严重颅脑损伤（意识不清者）；骨髓移植：危重症患者</el-radio>
+                    </el-col>
+                </el-row>
+                <h4>3.年龄得分</h4>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <el-radio v-model="form.age" :label="1">1分 ： 年龄≥70岁</el-radio>
+                        <el-radio v-model="form.age" :label="0">0分 ： 年龄小于70岁</el-radio>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>总分=营养状况得分+疾病状况得分+年龄得分</span>
+                    </el-col>
+                </el-row>
+                 <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>总分：</span>
+                        <div style="display:inline-block;width: 20%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                         <el-input placeholder="营养风险评估总分" v-model.number="healthRisk" disabled></el-input>
+                        </div>
+                        （说明：总分≥3分即存在营养风险）
+                        <span style="color:#E12429" v-show="healthRisk>=3" > 有营养风险 </span>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <span>通知医生：</span>
+                        <el-radio v-model="form.riskNotice" :label="1">否</el-radio>
+                        <el-radio v-model="form.riskNotice" :label="2">是
+                            <div class="input-box-small">
+                                <el-input placeholder="通知医生" v-model="form.riskDoctor"></el-input>
+                            </div>
+                        </el-radio>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <!-- 特殊护理操作告知-->
+        <div class="item-content">
+            <div class="title">
+                <h4>特殊护理操作告知</h4>
+            </div>
+            <div class="item-detail">
+                <el-row :gutter="10">
+                    <el-col :span="3">
+                        <el-radio v-model="form.specialCare" :label="1">静脉留置针 </el-radio>
+                    </el-col>
+                    <el-col :span="9">
+                        <span>时间</span>
+                        <div style="display:inline-block;width: 60%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                            <el-date-picker
+                            v-model="form.veinTime"
+                            type="datetime"
+                            placeholder="填卡日期"
+                            format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+                            value-format="yyyy-MM-dd HH:mm:ss">
+                            </el-date-picker>
+                        </div>
+                    
+                    </el-col>
+                    <el-col :span="6">
+                        <span>护士签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="护士签名" v-model="form.veinName"></el-input>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <span>家属签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="家属签名" v-model="form.veinFamily"></el-input>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="3">
+                        <el-radio v-model="form.specialCare" :label="2">鼻插胃管 </el-radio>
+                    </el-col>
+                    <el-col :span="9">
+                        <span>时间</span>
+                        <div style="display:inline-block;width: 60%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                            <el-date-picker
+                            v-model="form.nose"
+                            type="datetime"
+                            placeholder="填卡日期"
+                            format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+                            value-format="yyyy-MM-dd HH:mm:ss">
+                            </el-date-picker>
+                        </div>
+                    
+                    </el-col>
+                    <el-col :span="6">
+                        <span>护士签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="护士签名" v-model="form.noseName"></el-input>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <span>家属签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="家属签名" v-model="form.noseFamily"></el-input>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="3">
+                        <el-radio v-model="form.specialCare" :label="3">留置导尿 </el-radio>
+                    </el-col>
+                    <el-col :span="9">
+                        <span>时间</span>
+                        <div style="display:inline-block;width: 60%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                            <el-date-picker
+                            v-model="form.lienTime"
+                            type="datetime"
+                            placeholder="填卡日期"
+                            format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+                            value-format="yyyy-MM-dd HH:mm:ss">
+                            </el-date-picker>
+                        </div>
+                    
+                    </el-col>
+                    <el-col :span="6">
+                        <span>护士签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="护士签名" v-model="form.lienName"></el-input>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <span>家属签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="家属签名" v-model="form.lienFamily"></el-input>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="3">
+                        <el-radio v-model="form.specialCare" :label="4">保护性约束 </el-radio>
+                    </el-col>
+                    <el-col :span="9">
+                        <span>时间</span>
+                        <div style="display:inline-block;width: 60%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                            <el-date-picker
+                            v-model="form.protectTime"
+                            type="datetime"
+                            placeholder="填卡日期"
+                            format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+                            value-format="yyyy-MM-dd HH:mm:ss">
+                            </el-date-picker>
+                        </div>
+                    
+                    </el-col>
+                    <el-col :span="6">
+                        <span>护士签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="护士签名" v-model="form.protectName"></el-input>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <span>家属签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="家属签名" v-model="form.protectFamily"></el-input>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="3">
+                        <el-radio v-model="form.specialCare" :label="5">其他 </el-radio>
+                    </el-col>
+                    <el-col :span="9">
+                        <span>时间</span>
+                        <div style="display:inline-block;width: 60%;border-bottom:1px solid #333;padding-left:10px;box-sizing: border-box">
+                            <el-date-picker
+                            v-model="form.otherTime"
+                            type="datetime"
+                            placeholder="填卡日期"
+                            format="yyyy 年 MM 月 dd 日 HH:mm:ss"
+                            value-format="yyyy-MM-dd HH:mm:ss">
+                            </el-date-picker>
+                        </div>
+                    
+                    </el-col>
+                    <el-col :span="6">
+                        <span>护士签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="护士签名" v-model="form.otherName"></el-input>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <span>家属签名</span>
+                        <div class="input-box-small">
+                            <el-input placeholder="家属签名" v-model="form.otherFamily"></el-input>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <!-- 入院健康教育 -->
+        <div class="item-content">
+            <div class="title">
+                <h4>入院健康教育</h4>
+            </div>
+            <div class="item-detail">
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>1:介绍科室的主任、护士长及责任护士，以方便患者沟通。</p>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                         <p>2.  向患者介绍病区环境，规章制度等，消除患者及家属的陌生感及恐惧感。</p>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>3.  患者入住抢救室未经医生允许不要离开病区。</p>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>4.  据医嘱要求留陪护1人。</p>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>5.  为保证病区环境和患者休息，抢救室拒绝探视。</p>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>6.  节约用水、电爱护公共设施，不得在医用插座上使用电器。</p>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>7.  因环境特殊，流动人员较多，请妥善保管好贵重财物，防止丢失。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>8.  患者未经医生允许不得自行下床，如有需要帮助及时告知护士。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>9.  昏迷、躁动、意识障碍或小儿，老年患者等，请加床护挡，以免坠床。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>10. 除部分特殊需保护患者隐私操作外，其它情况请勿拉隔帘，便于护士观察病情变化。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>11. 使用热水袋及冰袋时请在护士指导下使用。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>12. 有义齿者及时取下交家属妥善保管，防止义齿松动、脱落导致误咽。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>13. 家属请勿坐于病床上。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>14. 我院为无烟医院，楼宇内严禁吸烟，吸烟者请到院外吸烟区。</p>
+                    </el-col>
+                </el-row><el-row :gutter="10">
+                    <el-col :span="24">
+                        <p>15. 疫情防控：手卫生、安全社交距离、规范戴口罩、防聚集等。</p>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+            <el-row :gutter="10">
+                <el-col :span="12">
+                    <span>评估及宣教护士签名：</span>
+                    <div class="input-box">
+                        <el-input v-model="form.evaluateNurse" placeholder="评估及宣教护士签名" ></el-input>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <span>患者或家属签字：</span>
+                    <div class="input-box">
+                        <el-input v-model="form.patient" placeholder="患者或家属签字" ></el-input>
+                    </div>
+                </el-col>
+            </el-row>
+        <el-button style="margin-top:15px" type="primary" @click="submit">提交信息</el-button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+    computed: {
+        // 跌倒风险评估
+        fallRisk() {
+            let total = '请选择所有评估项'
+            if( this.form.obstacle!=='' && this.form.oneMonth!=='' && this.form.help!=='' && this.form.drug!=='' &&  this.form.stepSize!=='' && this.form.Spirit!=='') {
+                 total = this.form.obstacle + this.form.oneMonth + this.form.help + this.form.drug + this.form.stepSize + this.form.Spirit
+            }
+            return total
+        },
+        // 压舱风险
+        ballastRisk() {
+            let total = '请选择所有评估项'
+            if( this.form.perception!=='' && this.form.damp!=='' && this.form.active!=='' && this.form.move!=='' &&  this.form.Nutrition!=='' && this.form.friction!=='') {
+                total = this.form.perception + this.form.damp + this.form.active + this.form.move + this.form.Nutrition + this.form.friction
+            }
+
+            return total
+        },
+        // 营养风险
+        healthRisk() {
+            return this.form.healthCode + this.form.healthDiseaseScore + this.form.age
+        } 
+    },
+    watch: {
+        fallRisk(newValue) {
+            if(newValue > 45) {
+                this.form.risk = 1
+            } else {
+                this.form.risk = 0
+            }
+        },
+        ballastRisk(newValue) {
+            if(newValue <= 18) {
+                this.form.ballast = 1
+            } else {
+                this.form.ballast = 0
+            }
+        },
+        'form.BMI'() {
+            this.getHealthCode()
+        },
+        'form.eat'() {
+            this.getHealthCode()
+        },
+        'form.weight'() {
+            this.getHealthCode()
+        },
+     
+    },
+    data() {
+        return {
+            form: {
+                name: '',         // 患者姓名
+                diagnosisNo: '',  // 就诊号
+                bedNo: '',        // 床号
+                sex: '',          // 性别
+                time: '',         // 病人入科时间
+                
+                hospitalType: '', // 入院方式
+                allergy: '',      // 过敏史
+                allergyName: '',  // 药物
+
+                temprature: '',   // 体温
+                pulse: '',        // 脉搏
+                respiration: '',  // 呼吸
+                blood: '',        // 血压
+                awareness: '',    // 意识
+                communicate: '',  // 沟通
+                vision: '',       // 视力
+                listen: '',       // 听力
+                risk: 0,          // 坠床风险默认无风险
+                riskDoctor: '',   // 
+
+                obstacle: '',     // 近三月跌倒/坠床史/视觉障碍
+                oneMonth: '',     // 超过一个医学诊断
+                help: '',         // 使用助行器具
+                drug: '',         // 静脉输液/置管/使用药物
+                stepSize: '',     // 步态
+                Spirit: '',       // 精神
+                evaluate: '',     // 评估工具
+                evaluateNumber:'',// 评分
+                painNotice: '',   // 通知医生
+                painDoctor: '',   // 通知医生姓名
+
+                perception: '' , // 感知程度
+                damp: '',        // 潮湿度
+                active: '',      //活动能力：
+                move: '',        // 移动能力
+                Nutrition: [],   // 营养摄取能力
+                friction: '',    // 摩擦力/剪切力
+                ballast: 0,     // 压舱风险
+                withBallast: '', // 带入压舱风险
+
+                BMI:'',          // BMI指数
+                weight: 0,      // 体重
+                eat: 0,         // 饮食状况 
+                healthCode: 0,  // 健康得分
+                healthDiseaseScore: 0, // 健康疾病得分
+                age: 0,         // 年龄得分
+                askDoctor: '',  // 通知医生
+                askDoctorName: '', // 营养风险评估通知医生姓名
+
+                specialCare: '', // 特殊护理
+                vein: '',       // 静脉留置针
+                veinTime: '',
+                veinName: '',
+                veinFamily: '',
+                nose: '',       // 鼻插胃管
+                nosetTime: '',
+                noseName: '',
+                noseFamily: '',
+                lien: '',       // 留置导尿
+                lienTime: '',
+                lienName: '',
+                lienFamily: '',  
+                protect: '',    // 保护性约束
+                protectTime: '',
+                protectName: '',
+                protectFamily: '',
+                other: '',      // 其他
+                otherTime: '',
+                otherName: '',
+                otherFamily: '',
+
+                evaluateNurse: '', //评估及宣教护士签名
+                patient: '',       //  患者或家属签字
+            }
+        }
+    },
+    methods: {
+        submit() {
+
+            console.log(this.form)
+
+        },
+        getHealthCode() {
+            console.log('开始计算')
+            if(this.form.BMI<=18.5) {
+                this.form.healthCode = 3
+            } else {
+                this.form.healthCode = Math.max(1,this.form.weight,this.form.eat)
+            }
+            console.log(this.form.healthCode)
+        }
+    }
+}
+</script>
+
+<style scoped>
+.report-card {
+    width: 80%;
+    margin: auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 1px solid #333;
+}
+.card-title {
+    border-bottom: 2px solid #666;
+    padding-bottom: 5px ;
+}
+.card-content {
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+/* 页面统一单元项样式 */
+.item-content {
+    border: 1px solid #666;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.item-content .title {
+    width: 20%;
+    text-align: center;
+}
+.item-content .item-detail {
+    border-left: 1px solid #666;
+    padding-left: 15px;
+    width: 80%;
+}
+
+/* 页面重置的element样式 */
+.el-row {
+    margin: 15px 0 15px 0 !important;
+}
+
+.el-checkbox-group {
+    font-size: 14px;
+}
+.el-row {
+    margin-top: 25px;
+}
+.el-col {
+    text-align: left;
+}
+.el-col span {
+    margin-left: 10px;
+}
+.el-radio {
+    margin-top: 10px;
+}
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 300px;
+}
+.input-box {
+    display: inline-block;
+    width: 60%;
+    border-bottom: 1px solid #333;
+}
+.input-box-small {
+    display: inline-block;
+    width: 40%;
+    border-bottom: 1px solid #333;
+}
+div >>>.el-input__inner {
+    width: 100%;
+    border: none !important;
+    height: 30px;
+}
+</style>
