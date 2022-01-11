@@ -12,6 +12,7 @@
   </div>
   <div class="right">
       <use-counter></use-counter>
+
   </div>
 </div>
   
@@ -60,7 +61,7 @@ export default {
 }
 .right {
   width: 50%;
-  height: 500px;
+  height: 1000px;
 
 
 }
