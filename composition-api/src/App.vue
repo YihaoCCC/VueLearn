@@ -1,18 +1,18 @@
 <template>
 <div style="display:flex;justify-content: space-between">
   <div class="left">
-      <mixin-extends></mixin-extends>
+       <mixin-extends></mixin-extends>
       <Composition></Composition>
       <ref-api></ref-api>
       <read-only></read-only>
-      <Computed></Computed>
+      <Computed></Computed> 
       <watch-effect></watch-effect>
-      <watch></watch>
-      <provider></provider>
+       <watch></watch>
+      <provider></provider> 
   </div>
   <div class="right">
       <use-counter></use-counter>
-
+      <setup-style></setup-style>
   </div>
 </div>
   
@@ -30,6 +30,7 @@ import WatchEffect from './components/WatchEffect.vue'
 import Watch from './components/Watch.vue'
 import Provider from './components/Provider.vue'
 import UseCounter from './components/useCounter.vue'
+import SetupStyle from '@/components/setupStyle'
 
 export default {
   name: 'App',
@@ -42,7 +43,8 @@ export default {
    WatchEffect,
     Watch,
     Provider,
-    UseCounter
+    UseCounter,
+    SetupStyle
   }
 }
 </script>

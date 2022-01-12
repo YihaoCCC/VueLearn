@@ -11,7 +11,7 @@ import Inject from './Inject.vue'
 export default {
   components: { Inject },
     setup() {
-        const name = 'cyh'
+        const name = ref('cyh')
         const age = ref(18)
         provide('name',  readonly(name))
         provide('age', readonly(age))
