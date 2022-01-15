@@ -14,6 +14,8 @@
       <use-counter></use-counter>
       <setup-style></setup-style>
       <render></render>
+      <jsx></jsx>
+      <v-focus></v-focus>
   </div>
 </div>
   
@@ -33,6 +35,8 @@ import Provider from './components/Provider.vue'
 import UseCounter from './components/useCounter.vue'
 import SetupStyle from '@/components/setupStyle'
 import Render from './components/render.vue'
+import Jsx from './components/jsx.vue'
+import VFocus from './components/v-focus.vue'
 
 export default {
   name: 'App',
@@ -47,7 +51,9 @@ export default {
     Provider,
     UseCounter,
     SetupStyle,
-    Render
+    Render,
+    Jsx,
+    VFocus
   }
 }
 </script>
