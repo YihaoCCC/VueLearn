@@ -13,6 +13,7 @@
   <div class="right">
       <use-counter></use-counter>
       <setup-style></setup-style>
+      <render></render>
   </div>
 </div>
   
@@ -31,6 +32,7 @@ import Watch from './components/Watch.vue'
 import Provider from './components/Provider.vue'
 import UseCounter from './components/useCounter.vue'
 import SetupStyle from '@/components/setupStyle'
+import Render from './components/render.vue'
 
 export default {
   name: 'App',
@@ -44,7 +46,8 @@ export default {
     Watch,
     Provider,
     UseCounter,
-    SetupStyle
+    SetupStyle,
+    Render
   }
 }
 </script>
