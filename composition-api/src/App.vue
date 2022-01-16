@@ -16,6 +16,7 @@
       <render></render>
       <jsx></jsx>
       <v-focus></v-focus>
+      <time-formats></time-formats>
   </div>
 </div>
   
@@ -37,6 +38,7 @@ import SetupStyle from '@/components/setupStyle'
 import Render from './components/render.vue'
 import Jsx from './components/jsx.vue'
 import VFocus from './components/v-focus.vue'
+import TimeFormats from './directive/TimeFormat.vue'
 
 export default {
   name: 'App',
@@ -53,7 +55,8 @@ export default {
     SetupStyle,
     Render,
     Jsx,
-    VFocus
+    VFocus,
+    TimeFormats
   }
 }
 </script>
