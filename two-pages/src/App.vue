@@ -5,19 +5,25 @@
     <transition name="test" mode="out-in" appear >
         <component :is="compomentName"></component>
     </transition> -->
-    <healthy-report></healthy-report>
+    <!-- <healthy-report></healthy-report> -->
+    <!-- <patient></patient> -->
+    <patient-go-out></patient-go-out>
   </div>
 </template>
 
 <script>
-import HealthyReport from './components/HealthyReport.vue'
+// import HealthyReport from './components/HealthyReport.vue'
+// import Patient from './components/Patient.vue'
+import PatientGoOut from './components/PatientGoOut.vue'
 // import ReportCard from './components/ReportCard.vue'
 // import HIVReport from './components/HIVReport'
 
 export default {
   name: 'App',
   components: {
-    HealthyReport
+    // HealthyReport,
+    // Patient,
+    PatientGoOut
     // ReportCard,
     // HIVReport
   },
