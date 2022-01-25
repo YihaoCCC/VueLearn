@@ -112,7 +112,7 @@
     let imgIndex = 0
     let imgList = []
     function getyiyan () {
-        fetch('https://api.muxiaoguo.cn/api/yiyan')
+        fetch('https://api.muxiaoguo.cn/api/yiyan?api_key=08711389c2a98854')
         .then(response => response.json())
             .then(data => {
                 document.getElementsByClassName('sentence1')[0].innerHTML = data.data.constant
@@ -121,7 +121,7 @@
         });
     }
     function gettiangou() {
-        fetch('https://api.muxiaoguo.cn/api/tiangourj')
+        fetch('https://api.muxiaoguo.cn/api/tiangourj?api_key=85c0abe3399eb029')
         .then(response => response.json())
             .then(res => {
                 document.getElementsByClassName('sentence2')[0].innerHTML = res.data.comment
@@ -129,14 +129,14 @@
             });
     }
     function getcaihongpi() {
-        fetch('https://api.muxiaoguo.cn/api/caihongpi')
+        fetch('https://api.muxiaoguo.cn/api/caihongpi?api_key=10cb537a3e3e19de')
             .then(response => response.json())
                 .then(res => {
                     document.getElementsByClassName('sentence3')[0].innerHTML = res.data.comment
             });
     }
     function getxiaohua() {
-        fetch('https://api.muxiaoguo.cn/api/xiaohua')
+        fetch('https://api.muxiaoguo.cn/api/xiaohua?api_key=542ef6dd9006f6b5')
                 .then(response => response.json())
                     .then(res => {
                         document.getElementsByClassName('sentence4')[0].innerHTML = res.data.content
@@ -146,7 +146,7 @@
     gettiangou()
     getcaihongpi()
     getxiaohua()
-    fetch('https://api.muxiaoguo.cn/api/bing?id=today&pn=7')
+    fetch('https://api.muxiaoguo.cn/api/bing?api_key=e4ce5899be0f50e3&id=today&pn=7')
                 .then(response => response.json())
                     .then(res => {
                         imgList = res.data
