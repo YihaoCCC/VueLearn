@@ -1,0 +1,25 @@
+{
+    "name": "cyh奕言",
+    "manifest_version":2,   
+    "version": "1.0.0",
+    "description": "无聊时刻小demo",
+    "author": "陈奕豪",
+    "browser_action":
+    {
+        "default_popup": "index.html"
+    },
+	"permissions":
+	[
+		"contextMenus", 
+		"tabs", 
+		"notifications", 
+		"webRequest", 
+		"webRequestBlocking",
+		"storage", 
+		"http://*/*", 
+		"https://*/*" 
+	],
+	"homepage_url": "https://www.baidu.com",
+
+	"devtools_page": "devtools.html"
+  }
