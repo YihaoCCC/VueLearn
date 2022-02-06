@@ -7,14 +7,16 @@
     </transition> -->
     <!-- <healthy-report></healthy-report> -->
     <!-- <patient></patient> -->
-    <patient-go-out></patient-go-out>
+    <!-- <patient-go-out></patient-go-out> -->
+    <xiong></xiong>
   </div>
 </template>
 
 <script>
+import Xiong from './components/Xiong.vue'
 // import HealthyReport from './components/HealthyReport.vue'
 // import Patient from './components/Patient.vue'
-import PatientGoOut from './components/PatientGoOut.vue'
+// import PatientGoOut from './components/PatientGoOut.vue'
 // import ReportCard from './components/ReportCard.vue'
 // import HIVReport from './components/HIVReport'
 
@@ -23,7 +25,8 @@ export default {
   components: {
     // HealthyReport,
     // Patient,
-    PatientGoOut
+    // PatientGoOut
+    Xiong
     // ReportCard,
     // HIVReport
   },
@@ -44,6 +47,9 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+body {
+  background-color: #c5c5c5;
 }
 #app {
   text-align: center;
