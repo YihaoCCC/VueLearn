@@ -4,9 +4,30 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     {path:'/', redirect: '/tiphome'},
     {path: '/tiphome', name: 'TipHome', component:  () => import('../TipHome.vue')  },
-    {path: '/home', name: 'home', component: () => import('../pages/home.vue')},
+    {
+        path: '/home', 
+        name: 'home',
+        component: () => import('../pages/home.vue'),
+        children: [
+           {
+            path: 'message',
+            name: 'message',
+            component: () => import('../pages/message.vue')
+           },
+           {
+            path: 'settings',
+            name: 'settings',
+            component: () => import('../pages/settings.vue')
+           }
+        ]
+    },
     {path: '/profile/:usename', name: 'profile', component: () => import('../pages/profile.vue')},
-    {path: '/about', name: 'about', component: () => import('../pages/about.vue')}
+    {path: '/about', name: 'about', component: () => import('../pages/about.vue')},
+    {
+        path: '/:pathMatch(.*)', 
+        name: 'notfound', 
+        component: () => import('../pages/NotFound.vue')
+    }
 ]
 
 // 创建路由对象router

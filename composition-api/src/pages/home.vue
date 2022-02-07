@@ -1,6 +1,11 @@
 <template>
   <div>
       Home
+      <router-link to="/home/message">消息</router-link>
+      <router-link to="/home/settings">设置</router-link>
+      <div>
+        <router-view></router-view>
+      </div>
   </div>
 </template>
 
