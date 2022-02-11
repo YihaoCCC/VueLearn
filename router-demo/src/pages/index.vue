@@ -6,7 +6,12 @@
   
 </template>
 
-<script setup>
+<script >
+export default {
+    activated() {
+        console.log(this.$route)
+    }
+}
 
 </script>
 

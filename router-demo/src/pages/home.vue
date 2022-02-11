@@ -42,7 +42,7 @@
             <span>Navigator One</span>
           </template>
           <el-menu-item-group title="Group One">
-            <el-menu-item index="1-1">item one</el-menu-item>
+            <el-menu-item index="1-1" @click="GoMeeting">item one</el-menu-item>
             <el-menu-item index="1-2">item one</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="Group Two">
@@ -118,6 +118,9 @@ export default {
       const GoHome = () => {
         router.push('/home')
       }
+      const GoMeeting= () => {
+        router.push('/home/meeting')
+      }
       return {
         activeIndex,
         handleSelect,
@@ -125,7 +128,8 @@ export default {
         handleOpen,
         GoAbout,
         GoProfile,
-        GoHome
+        GoHome,
+        GoMeeting
       }
     }
 }
@@ -154,12 +158,7 @@ export default {
 .el-menu-vertical-demo {
   height: 92.6vh;
 }
-.move-enter-from,
-.move-leave-to {
-  opacity: 0;
-}
-.move-enter-active,
-.move-leave-active {
-  transition: all 1s ease;
+.animate__animated.animate__bounceOutLeft {
+  --animate-duration: 1s;
 }
 </style>

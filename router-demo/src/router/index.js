@@ -36,12 +36,29 @@ const routes = [
             }
         ]
     },
+    {
+        path: '/:pathMatch(.*)', 
+        name: 'notfound', 
+        component: () => import('../pages/404.vue')
+    }
     
 ]
 
 const router = createRouter({
     routes,
     history: createWebHashHistory()
+})
+
+// 动态添加路由
+router.addRoute('home' ,{
+    path: 'meeting',
+    component: () => import('../pages/meeting.vue')
+})
+
+router.beforeEach((to, from) => {
+    console.log(to)
+    console.log('-------')
+    console.log(from)
 })
 
 export default router
