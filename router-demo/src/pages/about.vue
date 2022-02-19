@@ -1,18 +1,26 @@
 <template>
   <div>
       about
+      <h1>vuex中数据</h1>
+      counter: {{$store.state.counter}}
   </div>
 </template>
 
 <script>
-  import { getCurrentInstance } from 'vue'
+  // import {useStore} from 'vuex'
+  // import { getCurrentInstance } from 'vue'
  
   export default {
     setup () {
-      const { ctx } = getCurrentInstance()
+      // const { proxy } = getCurrentInstance()
       // let value = ctx.$router.currentRoute.value
       // console.log(value)
-      console.log(ctx)
+      // console.log('store')
+      // console.log(useStore())
+      // console.log('------')
+      // console.log(proxy)
+      // console.log(proxy.$store)
+      // console.log(proxy.$router)
     }
   }
 </script>

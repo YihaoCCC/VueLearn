@@ -37,9 +37,14 @@ const routes = [
         ]
     },
     {
-        path: '/:pathMatch(.*)', 
-        name: 'notfound', 
+        path: '/404',
+        name: 'notFound',
         component: () => import('../pages/404.vue')
+        
+    },
+    {
+        path: '/:pathMatch(.*)', 
+        redirect: '/404'
     }
     
 ]
@@ -55,10 +60,10 @@ router.addRoute('home' ,{
     component: () => import('../pages/meeting.vue')
 })
 
-router.beforeEach((to, from) => {
-    console.log(to)
-    console.log('-------')
-    console.log(from)
-})
+// router.beforeEach((to, from) => {
+//     console.log(to)
+//     console.log('-------')
+//     console.log(from)
+// })
 
 export default router

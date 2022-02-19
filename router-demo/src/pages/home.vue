@@ -1,30 +1,36 @@
 <template>
   <el-menu
     :default-active="activeIndex"
-    class="el-menu-demo"
+    class="el-menu-demo orders"
     mode="horizontal"
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
     @select="handleSelect"
   >
-    <el-menu-item class="logo">小奕办公系统</el-menu-item>
-    <el-menu-item index="1" >Processing Center</el-menu-item>
-    <el-sub-menu index="2">
-      <template #title>Workspace</template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-      <el-sub-menu index="2-4">
-        <template #title>item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="3" disabled>Info</el-menu-item>
-    <el-menu-item index="4">Orders</el-menu-item>
+  
+        <el-menu-item class="logo">小奕办公系统</el-menu-item>
+              <el-menu-item index="1" >Processing Center</el-menu-item>
+              <el-sub-menu index="2">
+                <template #title>Workspace</template>
+                <el-menu-item index="2-1">item one</el-menu-item>
+                <el-menu-item index="2-2">item two</el-menu-item>
+                <el-menu-item index="2-3">item three</el-menu-item>
+                <el-sub-menu index="2-4">
+                  <template #title>item four</template>
+                  <el-menu-item index="2-4-1">item one</el-menu-item>
+                  <el-menu-item index="2-4-2">item two</el-menu-item>
+                  <el-menu-item index="2-4-3">item three</el-menu-item>
+                </el-sub-menu>
+              </el-sub-menu>
+              <el-menu-item index="3" disabled>Info</el-menu-item>
+              <el-menu-item index="4" >Orders</el-menu-item>
+   
+      <el-menu-item  class="profile">
+        个人中心
+      </el-menu-item>
   </el-menu>
+   
   <div style='display:flex;justify-content: flex-start'>
  <div class="leftBar">
       <el-menu
@@ -42,7 +48,7 @@
             <span>Navigator One</span>
           </template>
           <el-menu-item-group title="Group One">
-            <el-menu-item index="1-1" @click="GoMeeting">item one</el-menu-item>
+            <el-menu-item index="/home/meeting" @click="GoMeeting">meeting</el-menu-item>
             <el-menu-item index="1-2">item one</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="Group Two">
@@ -85,8 +91,8 @@
 
 <script >
 
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { Location, Document, Menu as IconMenu, Setting} from '@element-plus/icons-vue'
 
 export default {
@@ -98,7 +104,10 @@ export default {
   },
   setup() {
       const router = useRouter()
-      const activeIndex = ref('1')
+      const activeIndex = ref(null)
+      onMounted(() => {
+        activeIndex.value = useRoute().fullPath
+      })
       const handleSelect = (key, keyPath) => {
         console.log(key, keyPath)
       }
@@ -110,6 +119,7 @@ export default {
         console.log(key, keyPath)
       }
       const GoAbout = () => {
+        
         router.push('/home/about')
       }
       const GoProfile = () => {
@@ -120,6 +130,7 @@ export default {
       }
       const GoMeeting= () => {
         router.push('/home/meeting')
+        activeIndex.value = '/home/meeting'
       }
       return {
         activeIndex,
@@ -160,5 +171,12 @@ export default {
 }
 .animate__animated.animate__bounceOutLeft {
   --animate-duration: 1s;
+}
+
+.profile {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+
 }
 </style>
