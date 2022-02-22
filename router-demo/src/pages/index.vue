@@ -1,7 +1,5 @@
 <template>
     <div class="totalBox">
-        <!-- <change-data ></change-data>
-        <button @click='getref'>12323456</button> -->
         <div class="OverView">
             <div class="header">
                 <div class="title">
@@ -60,9 +58,74 @@
         <div class="statistics">
             <div class="second-header">
                 <span>
-                    statistics
+                    Statistics
+                </span>
+                <span>
+                    >
                 </span>
             </div>
+            <div class="second-content">
+                <div class="leftgragh">
+                   <div class="myCard">
+                       <div id="container" style="min-width:400px;height:400px;"></div>
+                   </div>
+                </div>
+                <div class="center">
+                    <div class=" myCard top haspadding">
+                        <dv-scroll-ranking-board :config="config3" style="width:500px;height:180px" />
+                    </div>
+                    <div class="bottom">
+                        <div class="myCard">
+
+                            <dv-active-ring-chart :config="config" style="width:300px;height:300px" />
+                            
+                        </div>
+                        <div class="myCard haspadding">
+                            <dv-water-level-pond :config="config2" style="width:150px;height:200px" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="rightCard">
+                <el-card shadow="hover" >
+                    <template #header>
+                        <div class="clearfix">
+                            <span>待办事项</span>
+                            <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
+                        </div>
+                    </template>
+
+                    <el-table :show-header="false" :data="todoList" style="width:100%;">
+                        <el-table-column width="40">
+                            <template #default="scope">
+                                <el-checkbox v-model="scope.row.status"></el-checkbox>
+                            </template>
+                        </el-table-column>
+                        <el-table-column>
+                            <template #default="scope">
+                                <div
+                                    class="todo-item"
+                                    :class="{
+                                        'todo-item-del': scope.row.status,
+                                    }"
+                                >{{ scope.row.title }}</div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column width="60">
+                            <template #default="scope">
+                                <el-icon :size='20' class="icon " color="#409EFF" :class="{
+                                        'todo-item-del': scope.row.status,
+                                    }"><edit /></el-icon>
+                                <el-icon :size="20" class ='icon' color="#F56C6C" :class="{
+                                        'todo-item-del': scope.row.status,
+                                    }"><delete/></el-icon>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-card>
+            </div>
+            </div>
+            
         </div>
     </div>
    
@@ -70,23 +133,228 @@
 </template>
 
 <script >
-// import ChangeData from '@/components/ChangeData'
-// import { ref, onMounted } from 'vue'
+import {Edit,Delete} from '@element-plus/icons-vue'
+import Highcharts from 'highcharts/highstock';
+import HighchartsMore from 'highcharts/highcharts-more';
+import HighchartsDrilldown from 'highcharts/modules/drilldown';
+import Highcharts3D from 'highcharts/highcharts-3d';
+import Highmaps from 'highcharts/modules/map';
+
+HighchartsMore(Highcharts)
+HighchartsDrilldown(Highcharts);
+Highcharts3D(Highcharts);
+Highmaps(Highcharts);
+
 export default {
-    // components: {
-    //     ChangeData
-    // }
+    components: {
+        Edit,
+        Delete
+    },
+    mounted() {
+        Highcharts.chart('container', {
+            credits: {
+                enabled: true,                    // 默认值，如果想去掉版权信息，设置为false即可
+                text: '小奕办公系统',             // 显示的文字
+                href: 'http://www.hcharts.cn',      // 链接地址
+                position: {                         // 位置设置 
+                    align: 'left',
+                    x: 300,
+                    verticalAlign: 'bottom',
+                    y: -20
+                },
+                style: {                            // 样式设置
+                    cursor: 'pointer',
+                    color: '#666',
+                    fontSize: '12px'
+                }
+            },
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: '2018 年浏览器市场份额'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Chrome',
+                    y: 61.41,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Internet Explorer',
+                    y: 11.84
+                }, {
+                    name: 'Firefox',
+                    y: 10.85
+                }, {
+                    name: 'Edge',
+                    y: 4.67
+                }, {
+                    name: 'Safari',
+                    y: 4.18
+                }, {
+                    name: 'Other',
+                    y: 7.05
+                }]
+            }]
+        });
+    },
+    setup() { 
+        const config ={
+            data: [
+                {
+                name: '周口',
+                value: 55
+                },
+                {
+                name: '南阳',
+                value: 120
+                },
+                {
+                name: '西峡',
+                value: 78
+                },
+                {
+                name: '驻马店',
+                value: 66
+                },
+                {
+                name: '新乡',
+                value: 80
+                }
+            ],
+             digitalFlopStyle: {
+                color: '#e5e5e5',
+                fontSize: 20
+            },
+        }
+        const config2 = {
+                data: [66]
+            }
+        const config3 = {
+                data: [
+                    {
+                    name: '周口',
+                    value: 55
+                    },
+                    {
+                    name: '南阳',
+                    value: 120
+                    },
+                    {
+                    name: '驻马店',
+                    value: 66
+                    },
+                    {
+                    name: '新乡',
+                    value: 80
+                    },
+                    {
+                    name: '信阳',
+                    value: 45
+                    },
+                    {
+                    name: '漯河',
+                    value: 29
+                    }
+                ]
+            }
+        const todoList= [
+                {
+                    title: "今天要修复100个bug",
+                    status: false
+                },
+                {
+                    title: "小奕办公管理系统",
+                    status: false
+                },
+                {
+                    title: "今天要写100行代码加几个bug吧",
+                    status: false
+                },
+                {
+                    title: "今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧",
+                    status: false
+                },
+                {
+                    title: "今天要修复100个bug",
+                    status: true
+                },
+                {
+                    title: "今天要写100行代码加几个bug吧",
+                    status: true
+                },
+                {
+                    title: "今天要写100行代码加几个bug吧",
+                    status: false
+                },
+                {
+                    title: "今天要写100行代码加几个bug吧",
+                    status: true
+                },
+                {
+                    title: "今天要写100行代码加几个bug吧",
+                    status: true
+                },
+                {
+                    title: '这是我的毕业设计',
+                    status: false
+                }
+            ]
+            return {
+                todoList,
+                config,
+                config2,
+                config3
+            }
+    }
 }
 
 </script>
 
 
 <style lang='scss' scoped>
+.dv-scroll-ranking-board .ranking-column .inside-column  {
+    background-color: #32D296 !important;
+}
+    .myCard {
+        background-color: #fff;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all .3s;
+        color: #666 !important;
+        &:hover {
+            box-shadow: 0px 0px 20px 1px rgba(93, 150, 236, 0.286);
+    }
+}
+    .haspadding {
+        padding: 20px 20px;
+        box-sizing: border-box;
+        margin-left: 20px;
+    }
     .totalBox {
         width: 100%;
         .OverView {
             width: 100%;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             .header {
                 display: flex;
                 justify-content: space-between;
@@ -216,8 +484,6 @@ export default {
         }
         .statistics {
             width: 100%;
-            height: 10px;
-            background-color: #32D296;
             .second-header {
                 span {
                         font-size: 24px;
@@ -227,6 +493,61 @@ export default {
                             font-size: 16px;
                         }
                     }
+            }
+            .second-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .leftgragh {
+                    width: 400px;
+                }
+                .center{
+                        display: flex;
+                        flex-direction: column;
+                        .top {
+                            
+                            height: 220px;
+                            
+                            margin-bottom: 20px;
+                        }
+                        .bottom {
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: center;
+                            
+                        }
+                }
+                .rightCard {
+                    height: 540px;
+                    width: 420px;
+                    overflow: visible;
+                    overflow-x: hidden;
+                    
+                    .icon {
+                        cursor: pointer;
+                        transition:  all 0.5s ease;
+                        margin: 0 2px;
+                        &:hover {
+                            transform: scale(1.2);
+                        }
+                    }
+                    .todo-item {
+                        font-size: 14px;
+                    }
+
+                    .todo-item-del {
+                        text-decoration: line-through;
+                        color: #999;
+                        .icon {
+                            color: #666;
+                            cursor: default;
+                            &:hover {
+                                transform: none !important;
+
+                            }
+                        }
+                    }
+                }
             }
         }
         

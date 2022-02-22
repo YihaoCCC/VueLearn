@@ -75,7 +75,7 @@
   </div>
   <div class="rightContent"> 
     <router-view v-slot="props">
-      <transition leave-active-class="animate__animated animate__bounceOutLeft"
+      <transition leave-active-class="animate__animated animate__fadeOutDown"
                   enter-active-class="animate__animated animate__bounceInRight" 
                   appear
                   mode="out-in">
@@ -158,7 +158,7 @@ export default {
 }
 .rightContent {
   width: 86%;
-  height: 91.6vh;
+  min-height: 91.6vh;
   border-radius: 20px;
   margin-left: 20px;
   padding: 10px 20px;

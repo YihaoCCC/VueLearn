@@ -33,6 +33,11 @@ const routes = [
                 path: 'helloworld',
                 name: 'helloworld',
                 component: () => import('../components/HelloWorld.vue')
+            },
+            {
+                path: 'tabs',
+                name: 'tabs',
+                component: () => import('../pages/Tabs.vue')
             }
         ]
     },
