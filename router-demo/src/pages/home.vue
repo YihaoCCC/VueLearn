@@ -1,4 +1,7 @@
 <template>
+  <div class="welcome "  id="main" ref="showModel" :class="show ? 'animate__animated animate__fadeOut' : ''">
+    
+  </div>
   <el-menu
     :default-active="activeIndex"
     class="el-menu-demo orders"
@@ -95,6 +98,10 @@ import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Location, Document, Menu as IconMenu, Setting} from '@element-plus/icons-vue'
 
+import * as echarts from 'echarts/core';
+import { GraphicComponent } from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+
 export default {
   components: {
     Location,
@@ -103,11 +110,80 @@ export default {
     Setting
   },
   setup() {
+      const showModel = ref(null)
+      const show = ref(false)
       const router = useRouter()
       const activeIndex = ref(null)
+      const option = {
+        graphic: {
+          elements: [
+            {
+              type: 'text',
+              left: 'center',
+              top: 'center',
+              style: {
+                text: '欢迎来到小奕在线办公服务系统',
+                fontSize: 80,
+                fontWeight: 'bold',
+                lineDash: [0, 200],
+                lineDashOffset: 0,
+                fill: 'transparent',
+                stroke: '#666',
+                lineWidth: 1
+              },
+              keyframeAnimation: {
+                duration: 3200,
+                loop: false,
+                keyframes: [
+                  {
+                    percent: 0.7,
+                    style: {
+                      fill: 'transparent',
+                      lineDashOffset: 200,
+                      lineDash: [200, 0]
+                    }
+                  },
+                  {
+                    // Stop for a while.
+                    percent: 3,
+                    style: {
+                      fill: 'transparent'
+                    }
+                  },
+                  {
+                    percent: 1,
+                    style: {
+                      fill: '#666'
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      };
       onMounted(() => {
+        echarts.use([GraphicComponent, CanvasRenderer]);
+
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        option && myChart.setOption(option);
         activeIndex.value = useRoute().fullPath
+        closeModel()
       })
+      // 关闭蒙版
+      const closeModel = () => {
+        setTimeout(() => {
+          console.log(showModel)
+          show.value = true
+          // showModel.value.addAttribute('class', 'animate__animated animate__fadeOut')
+          
+        }, 5000)
+      }
+      setTimeout(() => {
+        showModel.value.style.display = 'none'
+        console.log(showModel.value.style)
+      },5500)
       const handleSelect = (key, keyPath) => {
         console.log(key, keyPath)
       }
@@ -140,7 +216,9 @@ export default {
         GoAbout,
         GoProfile,
         GoHome,
-        GoMeeting
+        GoMeeting,
+        showModel,
+        show
       }
     }
 }
@@ -149,6 +227,16 @@ export default {
 
 
 <style>
+.welcome {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(243, 238, 238, 0.329);  
+  z-index: 100;
+  transition:  all .5s ease;
+}
 .logo{
   width: 200px;
   font-size: 18px;

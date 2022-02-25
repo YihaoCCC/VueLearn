@@ -12,6 +12,7 @@
     "@jiaminghi/data-view": "^2.10.0",
     "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
+    "echarts": "^5.3.0",
     "element-plus": "^2.0.1",
     "highcharts": "^9.3.3",
     "sass": "^1.49.8",
