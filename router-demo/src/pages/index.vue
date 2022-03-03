@@ -91,7 +91,7 @@
                     <template #header>
                         <div class="clearfix">
                             <span>待办事项</span>
-                            <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
+                            <el-button style="float: right; padding: 3px 0" type="text" @click="addItem">添加</el-button>
                         </div>
                     </template>
 
@@ -115,10 +115,14 @@
                             <template #default="scope">
                                 <el-icon :size='20' class="icon " color="#409EFF" :class="{
                                         'todo-item-del': scope.row.status,
-                                    }"><edit /></el-icon>
+                                    }"
+                                    @click="editItem(scope.row)"
+                                    ><edit /></el-icon>
                                 <el-icon :size="20" class ='icon' color="#F56C6C" :class="{
-                                        'todo-item-del': scope.row.status,
-                                    }"><delete/></el-icon>
+                                        'todo-item-del': !scope.row.status,
+                                    }"
+                                    @click="deleteItem(scope.$index,scope.row)"
+                                    ><delete/></el-icon>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -127,6 +131,26 @@
             </div>
             
         </div>
+        <el-dialog
+            v-model="dialogVisible"
+            title="我的待办事项"
+            width="30%"
+        >
+            <span v-if="oldItem">正在修改：“{{oldItem}} ”的待办事项</span>
+            <span v-else>
+                添加新的待办事项
+            </span>
+            <el-divider />
+            <el-input v-model="newItem" />
+            <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="dialogVisible = false">取消</el-button>
+                <el-button type="primary" @click="confirmAddItem"
+                >确认</el-button
+                >
+            </span>
+            </template>
+        </el-dialog>
     </div>
    
   
@@ -139,7 +163,8 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Highmaps from 'highcharts/modules/map';
-
+import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 HighchartsMore(Highcharts)
 HighchartsDrilldown(Highcharts);
 Highcharts3D(Highcharts);
@@ -218,6 +243,8 @@ export default {
         });
     },
     setup() { 
+        const oldItem = ref(null)
+        const newItem = ref('')
         const config ={
             data: [
                 {
@@ -277,53 +304,139 @@ export default {
                     }
                 ]
             }
-        const todoList= [
+        const todoList= ref([
                 {
+                    id: 1,
                     title: "今天要修复100个bug",
                     status: false
                 },
                 {
+                    id: 2,
                     title: "小奕办公管理系统",
                     status: false
                 },
                 {
+                    id: 3,
                     title: "今天要写100行代码加几个bug吧",
                     status: false
                 },
                 {
+                    id: 4,
                     title: "今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧今天要写100行代码加几个bug吧",
                     status: false
                 },
                 {
+                    id: 5,
                     title: "今天要修复100个bug",
                     status: true
                 },
                 {
+                    id: 6,
                     title: "今天要写100行代码加几个bug吧",
                     status: true
                 },
                 {
+                    id: 7,
                     title: "今天要写100行代码加几个bug吧",
                     status: false
                 },
                 {
+                    id: 8,
                     title: "今天要写100行代码加几个bug吧",
                     status: true
                 },
                 {
+                    id: 9,
                     title: "今天要写100行代码加几个bug吧",
                     status: true
                 },
                 {
+                    id: 10,
                     title: '这是我的毕业设计',
                     status: false
                 }
-            ]
+            ])
+        const addItem = () => {
+            oldItem.value = null
+            newItem.value = null
+            dialogVisible.value = true
+        }
+        const middleId = ref(null)
+        const confirmAddItem = () => {
+            if(newItem.value) {
+                if(!oldItem.value) {
+                    todoList.value.push({
+                        id: todoList.value.length++,
+                        title: newItem.value,
+                        status: false
+                    })
+                    ElMessage({
+                        message: '添加待办成功！',
+                        type: 'success'
+                    })
+                    dialogVisible.value = false
+                } else {
+                    todoList.value.forEach((i) => {
+                    if( i.id === middleId.value) {
+                        i.title = newItem.value
+                    }
+                    })
+                    ElMessage({
+                        message: '修改成功！',
+                        type: 'success'
+                    })
+                    dialogVisible.value = false
+                }
+            } else {
+                 ElMessage({
+                    message: '不可为空！',
+                    type: 'warning',
+                })
+            }
+        }
+        const editItem = (item) => {
+            if(!item.status) {
+                dialogVisible.value = true
+                oldItem.value = item.title
+                middleId.value = item.id
+            } else {
+                ElMessage({
+                    message: '当前待办已完成，不可修改！',
+                    type: 'error'
+                })
+            }
+            
+        }
+        const deleteItem= (index,item) => {
+            if(item.status) {
+                todoList.value.splice(index,1)
+                ElMessage({
+                    message: '删除成功',
+                    type: "success"
+                })
+            } else {
+                ElMessage({
+                    message: '当前待办未完成，不可删除',
+                    type: "error"
+                })
+            }
+        }
+        const dialogVisible = ref(false)
+
             return {
                 todoList,
                 config,
                 config2,
-                config3
+                config3,
+                addItem,
+                deleteItem,
+                newItem,
+                dialogVisible,
+                oldItem,
+                editItem,
+                
+                confirmAddItem
+                
             }
     }
 }
