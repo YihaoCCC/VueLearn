@@ -7,3 +7,5 @@ function foo(item: string) {
 }
 
 foo('1234567890')
+
+export {message}
