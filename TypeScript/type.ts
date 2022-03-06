@@ -36,7 +36,7 @@ function foo2() {return 123}
 let result: unknown
 if(1<2) { result =  foo() } else{ result = foo2()}
 //unknown类型只能赋值给any和unknown类型
-let test1: string = result // 报错
+// let test1: string = result // 报错
 let test2: any = result
 console.log(result)
 
@@ -44,3 +44,25 @@ console.log(result)
 function sum(num:number,num2:number) {
     console.log(num+num2)
 }
+function test3 (point: {num1: number, num2: string, num3?:number}) {
+    return point.num1 + point.num2.length
+}
+let test5 = {
+    num1: 123,
+    num2: 'cyh'
+}
+console.log(test3(test5))
+
+// 类型别名：　ｔｙｐｅ
+type unionTypes = number | string | boolean
+type objectType = {
+    name: string,
+    age: number,
+    height?: number
+}
+const union1: unionTypes = '123'
+const union2: objectType = {
+    name: 'cyh',
+    age: 18
+}
+export {}
