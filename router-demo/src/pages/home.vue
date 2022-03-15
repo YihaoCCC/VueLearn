@@ -35,46 +35,46 @@
   </el-menu>
    
   <div style='display:flex;justify-content: flex-start'>
- <div class="leftBar">
-      <el-menu
-        active-text-color="#ffd04b"
-        background-color="#545c64"
-        class="el-menu-vertical-demo"
-        default-active="2"
-        text-color="#fff"
-        @open="handleOpen"
-        @close="handleClose"
-      >
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item-group title="Group One">
-            <el-menu-item index="/home/meeting" @click="GoMeeting">meeting</el-menu-item>
-            <el-menu-item index="1-2">item one</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title>item four</template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
-        <el-menu-item index="2" @click="GoProfile">
-          <el-icon><icon-menu /></el-icon>
-          <span>Navigator Two</span>
-        </el-menu-item>
-        <el-menu-item index="3" @click="GoAbout" >
-          <el-icon><document /></el-icon>
-          <span>Navigator Three</span>
-        </el-menu-item>
-        <el-menu-item index="4" @click="GoHome">
-          <el-icon><setting /></el-icon>
-          <span>Navigator Four</span>
-        </el-menu-item>
-      </el-menu>
+    <div class="leftBar">
+          <el-menu
+            active-text-color="#ffd04b"
+            background-color="#545c64"
+            class="el-menu-vertical-demo"
+            default-active="2"
+            text-color="#fff"
+            @open="handleOpen"
+            @close="handleClose"
+          >
+            <el-sub-menu index="1">
+              <template #title>
+                <el-icon><location /></el-icon>
+                <span>请假管理</span>
+              </template>
+              <el-menu-item-group title="Group One">
+                <el-menu-item index="/home/meeting" @click="GoMeeting">meeting</el-menu-item>
+                <el-menu-item index="1-2">item one</el-menu-item>
+              </el-menu-item-group>
+              <el-menu-item-group title="Group Two">
+                <el-menu-item index="1-3">item three</el-menu-item>
+              </el-menu-item-group>
+              <el-sub-menu index="1-4">
+                <template #title>item four</template>
+                <el-menu-item index="1-4-1">item one</el-menu-item>
+              </el-sub-menu>
+            </el-sub-menu>
+            <el-menu-item index="2" @click="GoProfile">
+              <el-icon><icon-menu /></el-icon>
+              <span>任务管理</span>
+            </el-menu-item>
+            <el-menu-item index="3" @click="GoAbout" >
+              <el-icon><document /></el-icon>
+              <span>出差管理</span>
+            </el-menu-item>
+            <el-menu-item index="4" @click="GoHome">
+              <el-icon><setting /></el-icon>
+              <span>部门管理</span>
+            </el-menu-item>
+          </el-menu>
   </div>
   <div class="rightContent"> 
     <router-view v-slot="props">
@@ -88,7 +88,7 @@
       </transition>
     </router-view>
   </div>
-  </div>
+</div>
  
 </template>
 

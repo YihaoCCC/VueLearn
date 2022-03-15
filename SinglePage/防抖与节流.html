@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖与节流</title>
+</head>
+<body>
+    <div id="app">
+        我是内容
+     
+        
+        <input id="Button1" type="button" value="开始全屏" onclick="kaishi()" />  
+        <input id="Button2" type="button" value="关闭全屏" onclick="guanbi()" /> 
+    </div>
+    <script>
+        //开始全屏
+    function kaishi()  
+    {  
+        var docElm = document.documentElement;  
+        //W3C   
+        if (docElm.requestFullscreen) {  
+            docElm.requestFullscreen();  
+        }  
+            //FireFox   
+        else if (docElm.mozRequestFullScreen) {  
+            docElm.mozRequestFullScreen();  
+        }  
+            //Chrome等   
+        else if (docElm.webkitRequestFullScreen) {  
+            docElm.webkitRequestFullScreen();  
+        }  
+            //IE11   
+        else if (elem.msRequestFullscreen) {  
+            elem.msRequestFullscreen();  
+        }  
+    }  
+  
+    //退出全屏
+    function guanbi() {  
+  
+  
+        if (document.exitFullscreen) {  
+            document.exitFullscreen();  
+        }  
+        else if (document.mozCancelFullScreen) {  
+            document.mozCancelFullScreen();  
+        }  
+        else if (document.webkitCancelFullScreen) {  
+            document.webkitCancelFullScreen();  
+        }  
+        else if (document.msExitFullscreen) {  
+            document.msExitFullscreen();  
+        }  
+    }  
+
+        function test() 
+        {
+            let i = 0
+         
+            console.log(i++)
+            
+        }
+        function debounce(fu, delay) {
+            let timer =  null
+            return function (){
+                if(timer) {
+                    clearTimeout(timer)
+                } 
+                 timer = setTimeout(fu, delay);
+            }
+            
+        }
+        window.onscroll = debounce(test,500)
+    </script>
+    <style>
+        #app {
+            text-align: center;
+            width: 500px;
+            margin: auto;
+            height: 1300px;
+        }
+    </style>
+</body>
+</html>

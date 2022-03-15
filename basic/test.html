@@ -1,17 +1,38 @@
-<html>
-    <head>
-        <style type=\"text/css\">.bg {background: #FFFF00}</style>
-    </head>
-    <body>
-        <p>Dear W/O Fulfillment Focal：
-            <br />         Please find the daily Refreshed report[<b>%s</b>] in the attachment, 
-            <span class=\"bg\">
-                <p > <span style="color:#FDFF33;">   kindly check and control the W/O fulfillment  </span> <span>as soon as possible</span></p>  
-                
-            </span> 
-           
-            <br/><br />       
-            Thank you for your attention and cooperation 
-        </p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="click button" onclick="showmessage(event)">
+    <input type="button" value="click button2" onclick="console.log(value)">
+    <input type="button" value="test event" id="button">
+    <script>
+        let num = 0
+        let btn = document.getElementById("button")
+        btn.addEventListener('click', ()=> {
+            num ++ 
+            console.log(num)
+            console.log('事件冒泡阶段打印')
+        },false)
+        btn.addEventListener('click', () => {
+            num++
+            console.log(num )
+            console.log('事件捕获阶段打印')
+        },true)
+        btn.onclick = function(event) {
+            // 这输入DOM中的事件处理程序，所以此时this指向的是event.target 当前元素
+            console.log( this)
+            console.log(event)
+        }
+        function showmessage (e) {
+            // 这个方法属于html中的事件处理程序，所以此时的this指向是window
+            console.log(e.target === this)
+            console.log(e)
+        }
+    </script>
+</body>
 </html>
