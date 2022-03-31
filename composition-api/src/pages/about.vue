@@ -1,11 +1,12 @@
 <template>
-  about
+  <div>
+    <h1>xss测试</h1>
+    <input type="textarea">
+  </div>
 </template>
 
 <script>
-export default {
 
-}
 </script>
 
 <style>

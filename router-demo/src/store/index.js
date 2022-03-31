@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-
+import userStore from "./UserState/UserState";
 const store = createStore({
     state() {
         return {
@@ -8,6 +8,9 @@ const store = createStore({
     },
     mutations: {
         
+    },
+    modules: {
+        userStore
     }
 })
 

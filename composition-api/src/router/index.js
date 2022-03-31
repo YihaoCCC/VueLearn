@@ -18,6 +18,11 @@ const routes = [
             path: 'settings',
             name: 'settings',
             component: () => import('../pages/settings.vue')
+           },
+           {
+               path: 'pdf',
+               name: 'pdf',
+               component: () => import('../pages/pdf.vue')
            }
         ]
     },
