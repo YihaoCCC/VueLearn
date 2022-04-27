@@ -25,8 +25,8 @@ const routes = [
                 component: () => import('../pages/about.vue')
             },
             {
-                path: 'profile',
-                name: 'profile',
+                path: 'css',
+                name: 'css',
                 component: () => import('../pages/profile.vue')
             },
             {
@@ -43,6 +43,13 @@ const routes = [
                 path: 'meetting',
                 name: 'meetting',
                 component:() => import('../pages/meeting.vue')
+            },
+            {
+                path: 'vue3',
+                name: 'vue3',
+                component: function() {
+                    return import('../pages/vue3.vue')
+                }
             }
         ]
     },

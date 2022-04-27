@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1>gasp实现动画</h1>
-      <input type="text" step="100" v-model='counter'>
+      <input type="shuzi" step="100" v-model='counter'>
       {{showCounter.toFixed(2)}}
   </div>
 </template>

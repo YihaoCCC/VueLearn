@@ -9,33 +9,70 @@
 <body>
     <div id="app">
         我是内容
-     
-        
+        <h5 id="title"></h5>
         <input id="Button1" type="button" value="开始全屏" onclick="kaishi()" />  
         <input id="Button2" type="button" value="关闭全屏" onclick="guanbi()" /> 
+        <input type="text" id='debounce' >
+        <div id="bigBox">
+            大盒子用来滚动节流
+        </div>
     </div>
     <script>
-        //开始全屏
-    function kaishi()  
-    {  
-        var docElm = document.documentElement;  
-        //W3C   
-        if (docElm.requestFullscreen) {  
-            docElm.requestFullscreen();  
+        document.getElementById('debounce').addEventListener('input', debounce(change, 1000))
+        function change() {
+            console.log(123);
+            document.getElementById('title').innerHTML = document.getElementById('debounce').value
+        }
+        // 防抖
+        function debounce(fun, delay) {
+            let timer = null
+            return function() {
+                console.log('运行1');
+                if(timer) {
+                    clearTimeout(timer)
+                    timer = setTimeout(fun ,delay)
+                } else {
+                    timer = setTimeout(fun ,delay)
+                }
+            }
+        }
+        // 节流
+        function scrolltest() {
+            console.log('滚动监听');
+        }
+        function throttle(fun, delay) {
+            let accept = true
+            return function() {
+                if(accept) {
+                    accept = false
+                    setTimeout(() => {
+                        fun()
+                        accept  = true
+                    },delay)
+                }
+            }
+        }
+        document.addEventListener('scroll', throttle(scrolltest,1000))
+        function kaishi()  
+        {  
+            var docElm = document.documentElement;  
+            //W3C   
+            if (docElm.requestFullscreen) {  
+                docElm.requestFullscreen();  
+            }  
+                //FireFox   
+            else if (docElm.mozRequestFullScreen) {  
+                docElm.mozRequestFullScreen();  
+            }  
+                //Chrome等   
+            else if (docElm.webkitRequestFullScreen) {  
+                docElm.webkitRequestFullScreen();  
+            }  
+                //IE11   
+            else if (elem.msRequestFullscreen) {  
+                elem.msRequestFullscreen();  
+            }  
         }  
-            //FireFox   
-        else if (docElm.mozRequestFullScreen) {  
-            docElm.mozRequestFullScreen();  
-        }  
-            //Chrome等   
-        else if (docElm.webkitRequestFullScreen) {  
-            docElm.webkitRequestFullScreen();  
-        }  
-            //IE11   
-        else if (elem.msRequestFullscreen) {  
-            elem.msRequestFullscreen();  
-        }  
-    }  
   
     //退出全屏
     function guanbi() {  
@@ -55,24 +92,10 @@
         }  
     }  
 
-        function test() 
-        {
-            let i = 0
-         
-            console.log(i++)
-            
-        }
-        function debounce(fu, delay) {
-            let timer =  null
-            return function (){
-                if(timer) {
-                    clearTimeout(timer)
-                } 
-                 timer = setTimeout(fu, delay);
-            }
-            
-        }
-        window.onscroll = debounce(test,500)
+        
+        //window.onscroll = debounce(test,500)
+        // window.location.assign('http://www.baidu.com')
+        // window.open('http://www.baidu.com', 'test')
     </script>
     <style>
         #app {
@@ -80,6 +103,9 @@
             width: 500px;
             margin: auto;
             height: 1300px;
+        }
+        #bigBox {
+            height: 1200px;
         }
     </style>
 </body>

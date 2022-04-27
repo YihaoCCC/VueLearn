@@ -13,15 +13,15 @@ const userStore = {
                             url: '/home/index',
                             type: 2
                         },{
-                            name: '请假记录',
-                            url: '/leave/record',
+                            name: '404',
+                            url: '/home/404',
                             type: 2
                         }
                     ]
                 },
                 {
-                    name: '个人中心',
-                    url: '/home/profile',
+                    name: 'css手风琴',
+                    url: '/home/css',
                     type: 2
                 },
                 {
@@ -59,6 +59,11 @@ const userStore = {
                 {
                     name: '角色管理',
                     url: '/home/role',
+                    type: 2
+                },
+                {
+                    name: 'vue3',
+                    url: '/home/vue3',
                     type: 2
                 }
             ]

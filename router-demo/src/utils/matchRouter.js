@@ -1,5 +1,3 @@
-
-
 function pathMatch(arr) {
     let renderRoutes = []
 

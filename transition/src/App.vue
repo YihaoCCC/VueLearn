@@ -1,34 +1,30 @@
 <template>
   <div>
     <h1>Vue-Transition</h1>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <keyframe></keyframe>
-    <transition-mode></transition-mode>
-    <use-animate-css></use-animate-css>
-    <gsap></gsap>
-    <transition-group-test></transition-group-test>
+    <router-link to='home' tag='button'> 
+      基础动画  
+    </router-link>
+    <router-link to='scroll' tag='button'> 
+      滚动页面延时加载动画  
+    </router-link>
+    <router-link to='lax' tag="button">
+        lax.js 实现
+    </router-link>
+    <router-link to='laxtext' tag="button">
+        lax.js 实现文本
+    </router-link>
+    <br>
+    <router-view />
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/transition.vue'
-import Keyframe from './components/keyframe.vue'
-import TransitionMode from './components/TransitionMode.vue'
-import UseAnimateCss from './components/UseAnimateCss.vue'
-import gsap from './components/gsap.vue'
-import TransitionGroupTest from './components/TransitionGroup.vue'
 
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
-    Keyframe,
-    TransitionMode,
-    UseAnimateCss,
-    gsap,
-    TransitionGroupTest
-  }
+
 }
 </script>
 

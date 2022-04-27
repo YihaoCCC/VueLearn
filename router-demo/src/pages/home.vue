@@ -80,7 +80,7 @@
 
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import matchRouter from '../utils/matchRouter'
+
 import { Location, Document, Menu as IconMenu, Setting} from '@element-plus/icons-vue'
 
 import * as echarts from 'echarts/core';
@@ -159,13 +159,7 @@ export default {
         activeIndex.value = useRoute().fullPath
         closeModel()
         
-        const route = matchRouter(store.state.userStore.menuItem)
-        console.log('用户菜单中匹配到的路由')
-        console.log(route);
-        // 添加到路由中
-        route.forEach((item) => {
-          router.addRoute('home',item)
-        })
+        
       })
       // 关闭蒙版
       const closeModel = () => {

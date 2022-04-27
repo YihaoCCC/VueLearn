@@ -11,7 +11,9 @@
     "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
     "gsap": "^3.9.1",
-    "vue": "^3.0.0"
+    "lax.js": "^2.0.3",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

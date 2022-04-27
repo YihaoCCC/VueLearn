@@ -10,3 +10,18 @@ f2 = foo()
 f1()
 f1()
 f2()
+
+const formData = {
+    name: 'cyh',
+    id: '1',
+    age: '18',
+    height: '1.88'
+}
+
+console.log(formData['id']);
+
+function sayHello (name) {
+    console.log(`hello${name}`);
+}
+
+sayHello('陈奕豪','123')

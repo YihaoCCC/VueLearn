@@ -1,7 +1,7 @@
 let imgIndex = 0
     let imgList = []
     function getyiyan () {
-        fetch('https://api.muxiaoguo.cn/api/yiyan?api_key=08711389c2a98854')
+        fetch('https://api.muxiaoguo.cn/api/yiyan?api_key=16d76a0353713b97')
         .then(response => response.json())
             .then(data => {
                 document.getElementsByClassName('sentence1')[0].innerHTML = data.data.constant

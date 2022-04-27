@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <a href="http://www.baidu.com" target="parent"> 123</a>
+    <div style="height: 1200px;"></div>
+</body>
+<script>
+    function jieliu2(func,delay)  {
+                    let vaild = true
+                    return function() {
+                        if(!vaild) return
+                        vaild = false
+                        setTimeout(() => {
+                            func()
+                            vaild = true
+                        },delay)
+                    }
+    }
+    const test  = ()=> {
+    
+        console.log(123);
+       
+    }
+    window.onscroll = jieliu2(test, 1000)
+    // document.addEventListener('scroll', () => {
+    //     jieliu2(test,1000)
+    // })
+    </script>
+</html>
