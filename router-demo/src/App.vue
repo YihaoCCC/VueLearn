@@ -1,5 +1,7 @@
 <template>
   <router-view></router-view>
+  <div id="teleport-target">
+  </div>
 </template>
 
 <script>
@@ -11,6 +13,12 @@ export default {
 </script>
 
 <style lang='scss'>
+#teleport-target {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 html,body {
   margin: 0;
 }

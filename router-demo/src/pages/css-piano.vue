@@ -46,6 +46,7 @@
             </div>  
           </div>
         </div>
+       
       </div>
   </div>
 </template>
@@ -62,7 +63,6 @@ onMounted(() => {
         item.classList.remove('active')
      })
     this.classList.add('active')
-    console.log(this.classList);
   }
   itemDom.forEach((item) => {
     item.addEventListener('click', setActive)
@@ -85,7 +85,6 @@ console.log(toRaw(router))
       position: absolute;
       top: 50%;
       left: 50%;
-
       height: 360px;
       transform: translate(-50%,-50%);
       padding: 20px 30px;

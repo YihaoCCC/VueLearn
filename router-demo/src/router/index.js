@@ -20,14 +20,14 @@ const routes = [
                 component: () => import('../pages/index.vue')
             },
             {
-                path: 'about',
-                name: 'about',
-                component: () => import('../pages/about.vue')
+                path: 'loading',
+                name: 'loading',
+                component: () => import('../pages/loading.vue')
             },
             {
-                path: 'css',
-                name: 'css',
-                component: () => import('../pages/profile.vue')
+                path: 'css-piano',
+                name: 'css-piano',
+                component: () => import('../pages/css-piano.vue')
             },
             {
                 path: 'helloworld',
@@ -40,9 +40,14 @@ const routes = [
                 component: () => import('../pages/Tabs.vue')
             },
             {
-                path: 'meetting',
-                name: 'meetting',
-                component:() => import('../pages/meeting.vue')
+                path: 'ComponentCenter',
+                name: 'ComponentCenter',
+                component:() => import('../pages/ComponentCenter.vue')
+            },
+            {
+                path: 'user',
+                name: 'user',
+                component:() => import('../pages/user.vue')
             },
             {
                 path: 'vue3',
@@ -50,6 +55,21 @@ const routes = [
                 component: function() {
                     return import('../pages/vue3.vue')
                 }
+            },
+            {
+                path: 'covid',
+                name: 'covid',
+                component: () => import('../pages/covid.vue')
+            },
+            {
+                path: 'tabBar',
+                name: 'tabBar',
+                component: () => import('../pages/tabBar.vue')
+            },
+            {
+                path: 'verify',
+                name: 'verify',
+                component: () => import('../pages/verifyImg.vue')
             }
         ]
     },
@@ -72,10 +92,10 @@ const router = createRouter({
 })
 
 // 动态添加路由
-router.addRoute('home' ,{
-    path: 'meeting',
-    component: () => import('../pages/meeting.vue')
-})
+// router.addRoute('home' ,{
+//     path: 'meeting',
+//     component: () => import('../pages/meeting.vue')
+// })
 
 // router.beforeEach((to, from) => {
 //     console.log(to)

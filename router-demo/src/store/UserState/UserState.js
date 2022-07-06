@@ -4,12 +4,12 @@ const userStore = {
         return {
             menuItem: [
                 {
-                    name: '系统主页',
+                    name: 'home',
                     url: '/home',
                     type: 1,
                     children: [
                         {
-                            name: '控制台',
+                            name: 'home-control',
                             url: '/home/index',
                             type: 2
                         },{
@@ -20,50 +20,72 @@ const userStore = {
                     ]
                 },
                 {
-                    name: 'css手风琴',
-                    url: '/home/css',
+                    name: 'css-piano',
+                    url: '/home/css-piano',
                     type: 2
                 },
                 {
-                    name: '关于我的',
-                    url: '/home/about',
+                    name: 'my-loading',
+                    url: '/home/loading',
                     type: 2
                 },
+                
                 {
-                    name: '系统通知',
-                    url: '/home/tabs',
-                    type: 2
+                    name: 'component-center',
+                    type: 1,
+                    children: [
+                        {   
+                            name: 'YhInput',
+                            url: '/home/ComponentCenter',
+                            type: 2
+                        }
+                    ]
                 },
                 {
-                    name: '会议中心',
-                    url: '/home/meeting',
-                    type: 2
-                },
-                {
-                    name: '用户管理',
+                    name: 'user-manage',
                     url: 'none',
                     type: 1,
                     children: [
                         {
-                            name: '系统用户',
+                            name: 'system-user',
                             url: '/home/user',
                             type: 2
                         },
                         {
-                            name: '增加用户',
+                            name: 'add-user',
                             url: '/home/adduser',
                             type: 2
                         }
                     ]
                 },
                 {
-                    name: '角色管理',
+                    name: 'role-control',
                     url: '/home/role',
                     type: 2
                 },
                 {
                     name: 'vue3',
                     url: '/home/vue3',
+                    type: 2
+                },
+                {
+                    name: 'sys-message',
+                    url: '/home/tabs',
+                    type: 2
+                },
+                {
+                    name: 'covid-submit',
+                    url: '/home/covid',
+                    type: 2
+                },
+                {
+                    name: 'dynamic-navbar',
+                    url: '/home/tabBar',
+                    type: 2
+                },
+                {
+                    name: 'verifyImg',
+                    url: '/home/verify',
                     type: 2
                 }
             ]

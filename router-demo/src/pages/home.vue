@@ -1,5 +1,8 @@
 <template>
-  <div class="welcome "  id="main" ref="showModel" :class="show ? 'animate__animated animate__fadeOut' : ''"></div>
+  <!-- <div class="welcome "  id="main" ref="showModel" :class="show ? 'animate__animated animate__fadeOut' : ''">
+    <yh-welcome welcomeText='欢迎来到小奕办公系统'></yh-welcome>
+     
+  </div> -->
   <el-menu
     :default-active="activeIndex"
     class="el-menu-demo orders"
@@ -8,7 +11,7 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-        <el-menu-item class="logo">小奕办公系统</el-menu-item>
+        <el-menu-item class="logo">Office Admin</el-menu-item>
               <el-menu-item index="1" >Processing Center</el-menu-item>
               <el-sub-menu index="2">
                 <template #title>Workspace</template>
@@ -46,7 +49,7 @@
                 </el-menu-item>
               </template>
               <template v-else>
-                <el-sub-menu :index="item.url">
+                <el-sub-menu :index="item.name">
                 <template #title>
                   <el-icon><location /></el-icon>
                   <span>{{item.name}}</span>
@@ -83,79 +86,80 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { Location, Document, Menu as IconMenu, Setting} from '@element-plus/icons-vue'
 
-import * as echarts from 'echarts/core';
-import { GraphicComponent } from 'echarts/components';
-import { CanvasRenderer } from 'echarts/renderers';
+// import * as echarts from 'echarts/core';
+// import { GraphicComponent } from 'echarts/components';
+// import { CanvasRenderer } from 'echarts/renderers';
 import {useStore} from 'vuex';
-
+import YhWelcome from '@/components/YhWelcome'
 export default {
   components: {
     Location,
     Document,
     IconMenu,
-    Setting
+    Setting,
+    YhWelcome
   },
   setup() {
       const showModel = ref(null)
       const show = ref(false)
       const router = useRouter()
       const activeIndex = ref(null)
-      const option = {
-        graphic: {
-          elements: [
-            {
-              type: 'text',
-              left: 'center',
-              top: 'center',
-              style: {
-                text: '欢迎来到小奕在线办公服务系统',
-                fontSize: 80,
-                fontWeight: 'bold',
-                lineDash: [0, 200],
-                lineDashOffset: 0,
-                fill: 'transparent',
-                stroke: '#666',
-                lineWidth: 1
-              },
-              keyframeAnimation: {
-                duration: 3200,
-                loop: false,
-                keyframes: [
-                  {
-                    percent: 0.7,
-                    style: {
-                      fill: 'transparent',
-                      lineDashOffset: 200,
-                      lineDash: [200, 0]
-                    }
-                  },
-                  {
-                    // Stop for a while.
-                    percent: 3,
-                    style: {
-                      fill: 'transparent'
-                    }
-                  },
-                  {
-                    percent: 1,
-                    style: {
-                      fill: '#666'
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      };
+      // const option = {
+      //   graphic: {
+      //     elements: [
+      //       {
+      //         type: 'text',
+      //         left: 'center',
+      //         top: 'center',
+      //         style: {
+      //           text: '欢迎来到小奕在线办公服务系统',
+      //           fontSize: 80,
+      //           fontWeight: 'bold',
+      //           lineDash: [0, 200],
+      //           lineDashOffset: 0,
+      //           fill: 'transparent',
+      //           stroke: '#666',
+      //           lineWidth: 1
+      //         },
+      //         keyframeAnimation: {
+      //           duration: 3200,
+      //           loop: false,
+      //           keyframes: [
+      //             {
+      //               percent: 0.7,
+      //               style: {
+      //                 fill: 'transparent',
+      //                 lineDashOffset: 200,
+      //                 lineDash: [200, 0]
+      //               }
+      //             },
+      //             {
+      //               // Stop for a while.
+      //               percent: 3,
+      //               style: {
+      //                 fill: 'transparent'
+      //               }
+      //             },
+      //             {
+      //               percent: 1,
+      //               style: {
+      //                 fill: '#666'
+      //               }
+      //             }
+      //           ]
+      //         }
+      //       }
+      //     ]
+      //   }
+      // };
       const store = useStore()
       const ItemList = store.state.userStore.menuItem
       onMounted(() => {
-        echarts.use([GraphicComponent, CanvasRenderer]);
+        // echarts.use([GraphicComponent, CanvasRenderer]);
 
-        var chartDom = document.getElementById('main');
-        var myChart = echarts.init(chartDom);
-        option && myChart.setOption(option);
+        // var chartDom = document.getElementById('main');
+        // var myChart = echarts.init(chartDom);
+        // option && myChart.setOption(option);
         activeIndex.value = useRoute().fullPath
         closeModel()
         

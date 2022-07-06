@@ -25,8 +25,8 @@ const route = matchRouter(store.state.userStore.menuItem)
         console.log(route);
         // 添加到路由中
         route.forEach((item) => {
-        router.addRoute('home',item)
-})
+                router.addRoute('home',item)
+        })
 app.use(router)
 
 
