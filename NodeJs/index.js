@@ -8,4 +8,6 @@ http.createServer(function (request, response) {
 
     // 发送响应数据 "Hello World"
     response.end('Hello World\n');
+    console.log("8080端口");
+    console.log(request.url);
 }).listen(8080);
