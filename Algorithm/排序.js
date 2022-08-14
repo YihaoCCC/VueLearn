@@ -14,7 +14,7 @@ function test(arr) {
 }
 
 // let result = test([1,4,5,3,2])
-
+  
 
 const resule = setTimeout(() => {},1000, 123)
 console.log(resule)
