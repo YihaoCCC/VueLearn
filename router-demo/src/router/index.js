@@ -70,6 +70,16 @@ const routes = [
                 path: 'verify',
                 name: 'verify',
                 component: () => import('../pages/verifyImg.vue')
+            },
+            {
+                path: 'randomtext',
+                name: 'randomtext',
+                component: () => import('../pages/RandomText.vue')
+            },
+            {
+                path: 'static',
+                name: 'static',
+                component: () => import('../pages/backstatic.vue')
             }
         ]
     },

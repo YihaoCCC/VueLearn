@@ -19,6 +19,11 @@ export default {
   left: 0;
   width: 100%;
 }
+
+// html {  
+//   overflow-x: scroll;
+//   overflow-y: hidden;
+// }
 html,body {
   margin: 0;
 }

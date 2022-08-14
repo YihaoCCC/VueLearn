@@ -25,3 +25,8 @@ function sayHello (name) {
 }
 
 sayHello('陈奕豪','123')
+
+
+let thispath = "http://loaclhost:8080/api"
+let newPath = thispath.replace(/^\/api/)
+console.log(thispath)

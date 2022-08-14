@@ -87,6 +87,16 @@ const userStore = {
                     name: 'verifyImg',
                     url: '/home/verify',
                     type: 2
+                },
+                {
+                    name: 'randomtext',
+                    url: '/home/randomtext',
+                    type: 2    
+                },
+                {
+                    name: 'StaticBackground',
+                    url: '/home/static',
+                    type: 2
                 }
             ]
         }

@@ -10,7 +10,8 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
-  >
+    style="position: fixed;top: 0;width:100%;z-index:100"
+    >
         <el-menu-item class="logo">Office Admin</el-menu-item>
               <el-menu-item index="1" >Processing Center</el-menu-item>
               <el-sub-menu index="2">
@@ -33,7 +34,7 @@
   </el-menu>
    
   <div style='display:flex;justify-content: flex-start'>
-    <div class="leftBar">
+    <div class="leftBar" style="positon:fixed">
           <el-menu
             active-text-color="#ffd04b"
             background-color="#545c64"
@@ -211,6 +212,8 @@ export default {
 }
 .leftBar {
   width: 11.8%;
+  position: fixed;
+  top: 60px;
 }
 .rightContent {
   width: 86%;
@@ -218,6 +221,9 @@ export default {
   border-radius: 20px;
   margin-left: 20px;
   padding: 10px 20px;
+  position: absolute;
+  right: 0;
+  top: 60px;
   box-sizing: border-box;
   background-color: #f6f8f8;
   margin-top: 10px;
