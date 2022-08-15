@@ -16,6 +16,8 @@
     "element-china-area-data": "^5.0.2",
     "element-plus": "^2.0.1",
     "highcharts": "^9.3.3",
+    "horwheel": "^1.0.1",
+    "neontext": "^2.0.2",
     "qrcode": "^1.5.0",
     "sass": "^1.49.8",
     "sass-loader": "^10.2.1",

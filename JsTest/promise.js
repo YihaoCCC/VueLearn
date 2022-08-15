@@ -51,4 +51,17 @@ var p = new Promise(function(resolve,reject){
    })
 
 
+   let a = 0
+   let d = new Date()
+   let d1 = new Date()
+
+   setTimeout(() => {
+     a= 1
+   }, 1000);
+
+   while(d1-d < 2000) {
+    d1 = new Date()
+   }
+   console.log(a);
+
     
