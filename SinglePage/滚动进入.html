@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚动进入时间线</title>
+</head>
+<body>
+    <div class="content">
+        <p id="showp">一个简单的p标签</p>
+    </div>
+</body>
+<script>    
+ window.onscroll = function(e) {
+
+var show = document.getElementById("showp");
+
+// 获取浏览器窗口可视化高度
+
+var clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+// 获取showp元素顶部到浏览器窗口顶部的距离
+
+var showTop = show.getBoundingClientRect().top;
+
+// 如果距离小于可视化窗口高度，就给showp元素添加动画效果
+let x = ((clientH-showTop)*1)/350;
+if (showTop <= clientH) {
+    showp.style.opacity = `${x}`;
+    showp.style.transform = `translateX(-${(1-x)*100}%)`;
+}
+};
+</script>
+<style>
+#showp {
+            width: 500px;
+            height: 350px;
+            background-color: aqua;
+            margin: 1000px auto 200px auto;
+            transform: translateX(-100%);
+           opacity: 0;
+        }
+</style>
+</html>

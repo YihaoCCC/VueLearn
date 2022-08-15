@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器视口属性</title>
+</head>
+<body>
+    <div class="item">1</div>
+    <div class="item">1</div>
+    <div class="item">1</div>
+    <div id="a1" class="item">
+        123
+    </div>
+    <div id="a2" class="item a2">   
+        456
+    </div>
+</body>
+<script>
+    const a2 = document.getElementById('a2')
+    document.addEventListener('scroll', () => {
+        console.log(`元素与整个body最顶部距离：${a2.offsetTop} 不会随着滚动改变`);
+        console.log(`元素相对于视口的距离：${a2.getBoundingClientRect().top}`);
+        console.log(`浏览器窗口高度：${window.innerHeight}`);
+    })
+</script>
+<style>
+    .item {
+        height: 400px;
+    }
+    .a2 {
+        background-color: antiquewhite;
+    }
+</style>
+</html>

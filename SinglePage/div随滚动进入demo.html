@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div随着滚动进入</title>
+</head>
+<body>
+    <div class="content">
+        <div class="placehoder">
+            这里是占位符
+        </div>
+        <div class="scroll">
+            <div class="left">
+                <h2>Here's an example of 16 elements scaling, fading and moving at once.</h2>
+            </div>
+            <div class="right">
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+            </div>
+        </div>
+        <div class="placehoder">
+            这里是占位符
+        </div>
+    </div>
+</body>
+<script>
+document.addEventListener('scroll', () => {
+    const title = document.getElementsByClassName('left')[0]
+    const clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+    console.log(clientH);
+    const leftDom = title.getBoundingClientRect().top
+    console.log(11111111111111111111111);
+    console.log(leftDom);
+    let x = (clientH - leftDom) / 500
+    if(leftDom <= clientH && x !== 1) {
+        title.style.opacity = x
+        title.style.transform = `translateX(-${(1-x)*100}%)`
+    }
+})
+</script>
+<style>
+    body {
+        background: black;
+    }
+    .content {
+        
+        width: 100%;
+        color: #ffff;
+        position: relative;
+    }
+    .scroll {
+        width: 100%;
+        display: flex;
+        padding: 0 200px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .placehoder {
+        width: 100%;
+        height: 1200px;
+    }
+    .content .left {
+        width: 30%;
+        height: 500px;
+        opacity: 0;
+        position: absolute;
+        
+        transform: translateX(-100px);
+    }
+    .content .right {
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        position: absolute;
+        right: 200px;
+    }
+    .content .right .items {
+        width: 80px;
+        height: 80px;
+        margin-top: 10px;
+        background-color: #ffff;
+    } 
+</style>
+</html>

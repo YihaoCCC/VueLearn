@@ -4,7 +4,12 @@ import { createWebHashHistory } from "vue-router";
 const routes = [
     {
         path: '',
-        redirect: '/home'
+        redirect: '/dashbord'
+    },
+    {
+        path: '/dashbord',
+        name: 'dashbord',
+        component: () => import('../pages/dashbord.vue')
     },
     {
         path: '/home',

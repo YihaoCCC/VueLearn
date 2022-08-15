@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>锚点与滚到顶部</title>
+</head>
+<body>
+    <div class="content">
+        <div class="maodian">
+            <a href="#1">1</a>
+            <a href="#2">2</a>
+            <a href="#3">3</a>
+            <a href="#4">4</a>
+            <a href="#5">5</a>
+            <button onclick="goid6()">JS实现锚点丝滑跳转</button>
+        </div>
+        <div class="main">
+            <div class="item" id="1">
+                1
+            </div>
+            <div class="item" id="2">
+                2
+            </div>
+            <div class="item" id="3">
+                3
+            </div>
+            <div class="item" id="4">
+                4
+            </div>
+            <div class="item" id="5">
+                5
+            </div>
+            <div class="item" id="tosix">
+                6
+            </div>
+        </div>
+        <div style="height: 400px; background-color: aquamarine;">
+
+        </div>
+        <div class="backtotop">
+            <button onclick="backtop()">回到顶部</button>
+        </div>
+    </div>
+    
+</body>
+<script>
+    const backtop = () => {
+        // document.scrollTop(0)
+        window.scrollTo(0,0)
+    }
+    function goid6() {
+        const a6 = document.querySelector('#tosix')
+        a6.scrollIntoView({
+            behavior: "smooth"
+        })
+    }
+    // const goid6 = () => {
+    //     document.querySelector('#6').scrollIntoView({
+    //         behavior: "smooth"
+    //     })
+    // }
+    const backDom = document.getElementsByClassName('backtotop')[0]
+    document.addEventListener('scroll',() => {
+        if(window.pageYOffset > 400) {
+            backDom.classList.add('show')  
+        } else {
+            backDom.classList.remove('show')
+        }
+    })
+
+</script>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    .main {
+        overflow: auto;
+        height: 1200px;
+        width: 1000px;
+        margin: auto;
+    }
+    .content {    
+        position: relative;
+    }
+    .item {
+        height: 400px;
+        width: 100%;
+        text-align: center;
+    }
+    .item:nth-child(1) {
+        background-color: rgb(248, 214, 173);
+    }
+    .item:nth-child(2) {
+        background-color: rgb(239, 172, 91);
+    }
+    .item:nth-child(3) {
+        background-color: rgb(213, 161, 98);
+    }
+    .item:nth-child(4) {
+        background-color: rgb(97, 70, 37);
+    }
+    .item:nth-child(5) {
+        background-color: rgb(26, 19, 10);
+    }
+    .item:nth-child(6) {
+        background-color: rgb(83, 27, 27);
+    }
+    .backtotop {
+        position: fixed;
+        bottom: 30px;
+        right: -300px;
+        transition: all .5s ease-in;  
+    }
+    .show {
+        right: 30px;
+    }
+    .maodian {
+        width: 100px;
+        text-align: center;
+        position: fixed;
+        top:30px;
+        left: 200px;
+        
+    }
+    .maodian a {
+        margin: 10px 0 ;
+        display: block;
+        background-color: aquamarine;
+
+    }
+</style>
+</html>
