@@ -7,7 +7,18 @@
     <title>Promisetest</title>
 </head>
 <body>
+    <div id="app">
+        <button onClick="clickHandle()">test</button>
+        <div id="test">
+            test
+        </div>
+    </div>
     <script>
+        const clickHandle  = () => {
+            console.log("运行了test函数");
+        }
+        let testDom = document.getElementById('test')
+        testDom.onClick = clickHandle;
         function test ()  {
             return  fetch('https://www.fastmock.site/mock/a373bc4295742a91ec188c9d769e0f2d/test/login/13').then(res =>{
                 console.log(res);
@@ -26,8 +37,32 @@
 
             })
         }
+        function test3 () {
+               return fetch('https://www.fastmock.site/mock/a373bc4295742a91ec188c9d769e0f2d/test/login/13').then((res) => {
+                    console.log(res);
+                    console.log("第三种写法");
+                    return new Promise((resolve,reject) => {
+                        resolve(123)
+                })
+            })
+        }
+        //
+        function test4 () {
+            // then 执行后返回一个新的promise对象，且这个fetch部分then中有显式的reslove，
+            // 所以这块代码相当于一个运行了promise.reslove(123)能继续then且then中有值：123
+            // test4函数中并未将这个then执行后的primise对象返回出去，所以此时test4()执行后不能拿到then，因为函数并没有返回任何的promise   
+                fetch('https://www.fastmock.site/mock/a373bc4295742a91ec188c9d769e0f2d/test/login/13').then((res) => {
+                    console.log(res);
+                    console.log("第四种写法（错误）");
+                    return new Promise((resolve,reject) => {
+                        resolve(123)
+                }).then((res) => console.log(res))
+            })
+        }
         console.log(test().then(res => console.log(res)))
         console.log(test2().then(res2 => console.log(res2)));
+        console.log(test3().then(res3 => console.log(res3)));
+        console.log(test4())
 
 
 

@@ -19,6 +19,12 @@
         label="地址">
       </el-table-column>
     </el-table>
+    <el-date-picker
+      v-model="value1"
+      type="month"
+      format="yyyy 第 WW 周"
+      placeholder="选择周">
+    </el-date-picker>
   </div>
 </template>
 

@@ -9,7 +9,7 @@ const routes = [
     {
         path: '/dashbord',
         name: 'dashbord',
-        component: () => import('../pages/dashbord.vue')
+        component: () => import('../pages/dashbord/dashbord.vue')
     },
     {
         path: '/home',
