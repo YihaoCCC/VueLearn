@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To: "紫薯芋圆"</title>
+</head>
+
+<body>
+    <script src="https://kit.fontawesome.com/95a02bd20d.js"></script>
+
+    <div class="container">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <i class="fa fa-heart"></i>
+                    <h3>Promise</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> 本来是说有空写一个发你呢，但是最近公司任务比较多，就一直推着忘着😂，
+                        昨天晚上看抖音突然想起来这件事，刚好今天有时间就写一个发给你，再不写马上就过年了🤣
+                        <span>(李峋的代码是用C语言写的，我不会那个语言，我就用JavaScript写一个吧😊）</span>
+                    </p>
+
+                    <a href="#" type="button" onclick="showModal(1)">Click Here💖</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <i class="fab fa-tiktok"></i>
+                    <h3>Tiktok</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> 这里本想做点更好玩的，但是我好像就只有你的抖音，所以就把你抖音上的内容放到这里了😂</p>
+                    <a href="#" type="button" onclick="showModal(2)">Go --- >紫薯芋圆（躺平版）</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <i class="fab fa-weixin"></i>
+                    <h3>We Chat</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p> 最后这个，想加一下你的微信，交个朋友可以么？😉</p>
+                    <a href="#" type="button" onclick="showModal(3)">Get My WeID</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal" id="modal">
+        <div class="close" onclick="closeModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                    d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+            </svg>
+        </div>
+        <div class="modal_content">
+            <div class="heart content_item">
+                <canvas id="canvas" width="1400" height="600"></canvas>
+            </div>
+            <div class="tiktok content_item">
+                <img src="https://p6-pc-sign.douyinpic.com/tos-cn-i-0813/54b116e2bb384b29bafc7c9964bd7900~q75.webp?biz_tag=aweme_images&from=3213915784&s=PackSourceEnum_AWEME_DETAIL&se=false&x-expires=1672560000&x-signature=%2FG%2B2y6m1MPSJaD%2BYSdlCJ1TxUhs%3D"
+                    alt="">
+                <a class="my-button" href="https://www.douyin.com/note/7115621433211964711" target="_blank">去抖音主页</a>
+            </div>
+            <div class="WeChat content_item">
+                <div class="WeChat-card">
+                    <div class="WeChat-content">
+                        <div class="front">
+                            <h3 class="title">Hey</h3>
+                            <p class="subtitle">:) 你好，我是陈奕豪 ♪</p>
+                            <p style="margin-top: 200px;">鼠标移过来试试看</p>
+                        </div>
+
+                        <div class="back">
+                            <p class="description">
+                                <img src="https://bcn.135editor.com/files/users/541/5419088/202212/kIFuOxTY_Zqjz.jpg?x-bce-process=image/auto-orient,o_1"
+                                    alt="">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="imgBox">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const modal = document.getElementById('modal')
+    const itemList = document.querySelectorAll('.content_item')
+    function showModal(type) {
+        modal.style.top = '50%'
+        if (type === 1) {
+            itemList[0].style.display = 'block'
+            draw()
+        } else if (type === 2) {
+            itemList[1].style.display = 'block'
+
+        } else {
+            itemList[2].style.display = 'block'
+        }
+    }
+    function closeModal() {
+        modal.style.top = '-150%'
+        itemList.forEach((ele) => {
+            ele.style.display = 'none'
+        })
+    }
+    var canvas = document.getElementById("canvas");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Initialize the GL context
+    var gl = canvas.getContext('webgl');
+    if (!gl) {
+        console.error("Unable to initialize WebGL.");
+    }
+
+    //Time
+    var time = 0.0;
+
+    //************** Shader sources **************
+
+    var vertexSource = `
+    attribute vec2 position;
+    void main() {
+        gl_Position = vec4(position, 0.0, 1.0);
+    }
+    `;
+
+    var fragmentSource = `
+precision highp float;
+
+uniform float width;
+uniform float height;
+vec2 resolution = vec2(width, height);
+
+uniform float time;
+
+#define POINT_COUNT 8
+
+vec2 points[POINT_COUNT];
+const float speed = -0.5;
+const float len = 0.25;
+float intensity = 1.3;
+float radius = 0.008;
+
+//https://www.shadertoy.com/view/MlKcDD
+//Signed distance to a quadratic bezier
+float sdBezier(vec2 pos, vec2 A, vec2 B, vec2 C){    
+	vec2 a = B - A;
+	vec2 b = A - 2.0*B + C;
+	vec2 c = a * 2.0;
+	vec2 d = A - pos;
+
+	float kk = 1.0 / dot(b,b);
+	float kx = kk * dot(a,b);
+	float ky = kk * (2.0*dot(a,a)+dot(d,b)) / 3.0;
+	float kz = kk * dot(d,a);      
+
+	float res = 0.0;
+
+	float p = ky - kx*kx;
+	float p3 = p*p*p;
+	float q = kx*(2.0*kx*kx - 3.0*ky) + kz;
+	float h = q*q + 4.0*p3;
+
+	if(h >= 0.0){ 
+		h = sqrt(h);
+		vec2 x = (vec2(h, -h) - q) / 2.0;
+		vec2 uv = sign(x)*pow(abs(x), vec2(1.0/3.0));
+		float t = uv.x + uv.y - kx;
+		t = clamp( t, 0.0, 1.0 );
+
+		// 1 root
+		vec2 qos = d + (c + b*t)*t;
+		res = length(qos);
+	}else{
+		float z = sqrt(-p);
+		float v = acos( q/(p*z*2.0) ) / 3.0;
+		float m = cos(v);
+		float n = sin(v)*1.732050808;
+		vec3 t = vec3(m + m, -n - m, n - m) * z - kx;
+		t = clamp( t, 0.0, 1.0 );
+
+		// 3 roots
+		vec2 qos = d + (c + b*t.x)*t.x;
+		float dis = dot(qos,qos);
+        
+		res = dis;
+
+		qos = d + (c + b*t.y)*t.y;
+		dis = dot(qos,qos);
+		res = min(res,dis);
+		
+		qos = d + (c + b*t.z)*t.z;
+		dis = dot(qos,qos);
+		res = min(res,dis);
+
+		res = sqrt( res );
+	}
+    
+	return res;
+}
+
+
+//http://mathworld.wolfram.com/HeartCurve.html
+vec2 getHeartPosition(float t){
+	return vec2(16.0 * sin(t) * sin(t) * sin(t),
+							-(13.0 * cos(t) - 5.0 * cos(2.0*t)
+							- 2.0 * cos(3.0*t) - cos(4.0*t)));
+}
+
+//https://www.shadertoy.com/view/3s3GDn
+float getGlow(float dist, float radius, float intensity){
+	return pow(radius/dist, intensity);
+}
+
+float getSegment(float t, vec2 pos, float offset, float scale){
+	for(int i = 0; i < POINT_COUNT; i++){
+		points[i] = getHeartPosition(offset + float(i)*len + fract(speed * t) * 6.28);
+	}
+    
+	vec2 c = (points[0] + points[1]) / 2.0;
+	vec2 c_prev;
+	float dist = 10000.0;
+    
+	for(int i = 0; i < POINT_COUNT-1; i++){
+		//https://tinyurl.com/y2htbwkm
+		c_prev = c;
+		c = (points[i] + points[i+1]) / 2.0;
+		dist = min(dist, sdBezier(pos, scale * c_prev, scale * points[i], scale * c));
+	}
+	return max(0.0, dist);
+}
+
+void main(){
+	vec2 uv = gl_FragCoord.xy/resolution.xy;
+	float widthHeightRatio = resolution.x/resolution.y;
+	vec2 centre = vec2(0.5, 0.5);
+	vec2 pos = centre - uv;
+	pos.y /= widthHeightRatio;
+	//Shift upwards to centre heart
+	pos.y += 0.02;
+	float scale = 0.000015 * height;
+	
+	float t = time;
+    
+	//Get first segment
+  float dist = getSegment(t, pos, 0.0, scale);
+  float glow = getGlow(dist, radius, intensity);
+  
+  vec3 col = vec3(0.0);
+
+	//White core
+  col += 10.0*vec3(smoothstep(0.003, 0.001, dist));
+  //Pink glow
+  col += glow * vec3(1.0,0.05,0.3);
+  
+  //Get second segment
+  dist = getSegment(t, pos, 3.4, scale);
+  glow = getGlow(dist, radius, intensity);
+  
+  //White core
+  col += 10.0*vec3(smoothstep(0.003, 0.001, dist));
+  //Blue glow
+  col += glow * vec3(0.1,0.4,1.0);
+        
+	//Tone mapping
+	col = 1.0 - exp(-col);
+
+	//Gamma
+	col = pow(col, vec3(0.4545));
+
+	//Output to screen
+ 	gl_FragColor = vec4(col,1.0);
+}
+`;
+
+    window.addEventListener('resize', onWindowResize, false);
+
+    function onWindowResize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.uniform1f(widthHandle, window.innerWidth);
+        gl.uniform1f(heightHandle, window.innerHeight);
+    }
+
+    function compileShader(shaderSource, shaderType) {
+        var shader = gl.createShader(shaderType);
+        gl.shaderSource(shader, shaderSource);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            throw "Shader compile failed with: " + gl.getShaderInfoLog(shader);
+        }
+        return shader;
+    }
+
+    function getAttribLocation(program, name) {
+        var attributeLocation = gl.getAttribLocation(program, name);
+        if (attributeLocation === -1) {
+            throw 'Cannot find attribute ' + name + '.';
+        }
+        return attributeLocation;
+    }
+
+    function getUniformLocation(program, name) {
+        var attributeLocation = gl.getUniformLocation(program, name);
+        if (attributeLocation === -1) {
+            throw 'Cannot find uniform ' + name + '.';
+        }
+        return attributeLocation;
+    }
+
+    var vertexShader = compileShader(vertexSource, gl.VERTEX_SHADER);
+    var fragmentShader = compileShader(fragmentSource, gl.FRAGMENT_SHADER);
+
+
+    var program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+
+    gl.useProgram(program);
+
+    var vertexData = new Float32Array([
+        -1.0, 1.0, 	// top left
+        -1.0, -1.0, 	// bottom left
+        1.0, 1.0, 	// top right
+        1.0, -1.0, 	// bottom right
+    ]);
+
+    //Create vertex buffer
+    var vertexDataBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexDataBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertexData, gl.STATIC_DRAW);
+
+    // Layout of our data in the vertex buffer
+    var positionHandle = getAttribLocation(program, 'position');
+
+    gl.enableVertexAttribArray(positionHandle);
+    gl.vertexAttribPointer(positionHandle,
+        2, 				// position is a vec2 (2 values per component)
+        gl.FLOAT, // each component is a float
+        false, 		// don't normalize values
+        2 * 4, 		// two 4 byte float components per vertex (32 bit float is 4 bytes)
+        0 				// how many bytes inside the buffer to start from
+    );
+
+    //Set uniform handle
+    var timeHandle = getUniformLocation(program, 'time');
+    var widthHandle = getUniformLocation(program, 'width');
+    var heightHandle = getUniformLocation(program, 'height');
+
+    gl.uniform1f(widthHandle, window.innerWidth);
+    gl.uniform1f(heightHandle, window.innerHeight);
+
+    var lastFrame = Date.now();
+    var thisFrame;
+
+    function draw() {
+
+        //Update time
+        thisFrame = Date.now();
+        time += (thisFrame - lastFrame) / 1000;
+        lastFrame = thisFrame;
+
+        //Send uniforms to program
+        gl.uniform1f(timeHandle, time);
+        //Draw a triangle strip connecting vertices 0-4
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+        requestAnimationFrame(draw);
+    }
+</script>
+<style>
+    body {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: #444;
+        justify-content: center;
+        align-items: center;
+        font-family: arial;
+    }
+
+    .modal {
+        position: absolute;
+        top: -150%;
+        left: 50%;
+        width: 80%;
+        height: 80vh;
+        background: rgb(16, 16, 16);
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        border-radius: 20px;
+        padding: 30px 30px;
+        transition: all .5s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .modal .close {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #333;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+    .modal .close svg {
+        width: 80%;
+        height: 80%;
+        transition: all .3s ease-in-out;
+        border-radius: 50%;
+    }
+
+    .modal .close:hover svg {
+        transform: rotate(90deg) scale(1.1);
+        box-shadow:
+            inset 0 0 60px whitesmoke,
+            inset 20px 0 80px #f0f,
+            inset -20px 0 80px #0ff,
+            inset 20px 0 300px #f0f,
+            inset -20px 0 300px #0ff,
+            0 0 50px #fff,
+            -10px 0 80px #f0f,
+            10px 0 80px #0ff;
+    }
+
+    .modal .modal_content .content_item {
+        display: none;
+    }
+
+    .modal .modal_content .tiktok {
+        position: relative;
+    }
+
+    .modal .modal_content .tiktok a {
+        position: absolute;
+        bottom: 20%;
+        right: 46%;
+        font-weight: bolder;
+    }
+
+    .modal .modal_content .tiktok img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal .modal_content .WeChat {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .description img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .content p span {
+        font-size: 12px;
+        color: #999;
+    }
+
+    .container {
+        width: 1000px;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .container .card {
+        position: relative;
+    }
+
+    .container .card .face {
+        width: 300px;
+        height: 200px;
+        transition: .4s;
+    }
+
+    .container .card .face.face1 {
+        position: relative;
+        background: #333;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        z-index: 1;
+        transform: translateY(100px);
+    }
+
+    .container .card:hover .face.face1 {
+        transform: translateY(0);
+        box-shadow:
+            inset 0 0 60px whitesmoke,
+            inset 20px 0 80px #f0f,
+            inset -20px 0 80px #0ff,
+            inset 20px 0 300px #f0f,
+            inset -20px 0 300px #0ff,
+            0 0 50px #fff,
+            -10px 0 80px #f0f,
+            10px 0 80px #0ff;
+    }
+
+    .container .card .face.face1 .content {
+        opacity: .2;
+        transition: 0.5s;
+        text-align: center;
+    }
+
+    .container .card:hover .face.face1 .content {
+        opacity: 1;
+    }
+
+    .container .card .face.face1 .content i {
+        font-size: 3em;
+        color: white;
+        display: inline-block;
+
+    }
+
+    .container .card .face.face1 .content h3 {
+        font-size: 1em;
+        color: white;
+        text-align: center;
+    }
+
+    .container .card .face.face1 .content a {
+        transition: .5s;
+    }
+
+    .container .card .face.face2 {
+        position: relative;
+        background: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, .8);
+        transform: translateY(-100px);
+    }
+
+    .container .card:hover .face.face2 {
+        transform: translateY(0);
+    }
+
+    .container .card .face.face2 .content p,
+    a {
+        font-size: 10pt;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .container .card .face.face2 .content a {
+        text-decoration: none;
+        color: black;
+        box-sizing: border-box;
+        outline: 1px dashed #333;
+        padding: 10px;
+        margin: 15px 0 0;
+        display: inline-block;
+    }
+
+    .container .card .face.face2 .content a:hover {
+        background: #333;
+        color: whitesmoke;
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .my-button:link,
+    .my-button:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: rgb(188, 40, 204);
+        padding: 10px 30px;
+        border: 1px solid;
+        border-radius: 1000px;
+        display: inline-block;
+        transition: all .2s;
+        position: relative;
+    }
+
+    .my-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(27, 27, 27, .5);
+    }
+
+    .my-button:active {
+        transform: translateY(-3px);
+    }
+
+    .my-button::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: -1;
+        transition: all .5s;
+    }
+
+    .my-button:hover::after {
+        background-color: #f0f;
+        transform: scaleX(1.4) scaleY(1.5);
+        opacity: 0;
+    }
+
+    .WeChat-card {
+        width: 500px;
+        height: 700px;
+        cursor: pointer;
+    }
+
+    .WeChat-content {
+        text-align: center;
+        position: relative;
+        transition: all 2.25s;
+        color: #fff;
+        height: 500px;
+        border-radius: 30px;
+        background-color: #444;
+        padding: 5em;
+        transform-style: preserve-3d;
+    }
+
+    .WeChat-card:hover .WeChat-content {
+        transform: rotateY(0.5turn);
+    }
+
+    .front,
+    .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 2em;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+    }
+
+    .title {
+        transform: translateZ(5rem);
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        transform: translateZ(2rem);
+    }
+
+    .back {
+        transform: rotateY(0.5turn);
+        background-color: #c1c1c1;
+    }
+
+    .description {
+        transform: translateZ(3rem);
+    }
+</style>
+
+</html>
