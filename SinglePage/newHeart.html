@@ -50,13 +50,13 @@
             <div class="face face1">
                 <div class="content">
                     <i class="fab fa-weixin"></i>
-                    <h3>We Chat</h3>
+                    <h3>Envelope</h3>
                 </div>
             </div>
             <div class="face face2">
                 <div class="content">
-                    <p> 最后这个，想加一下你的微信，交个朋友可以么？😉</p>
-                    <a href="#" type="button" onclick="showModal(3)">Get My WeID</a>
+                    <p> 💬 ✍ 📩</p>
+                    <a href="#" type="button" onclick="showModal(3)">Envelope Open</a>
                 </div>
             </div>
         </div>
@@ -83,15 +83,12 @@
                     <div class="WeChat-content">
                         <div class="front">
                             <h3 class="title">Hey</h3>
-                            <p class="subtitle">:) 你好，我是陈奕豪 ♪</p>
-                            <p style="margin-top: 200px;">鼠标移过来试试看</p>
+                            <p class="subtitle">:) 你好，我是陈一奕 ♪</p>
+                            <p style="margin-top: 200px;">鼠标移过来</p>
                         </div>
 
                         <div class="back">
-                            <p class="description">
-                                <img src="https://bcn.135editor.com/files/users/541/5419088/202212/kIFuOxTY_Zqjz.jpg?x-bce-process=image/auto-orient,o_1"
-                                    alt="">
-                            </p>
+                            <p class="description" id="dis"></p>
                         </div>
                     </div>
                 </div>
@@ -104,6 +101,21 @@
 <script>
     const modal = document.getElementById('modal')
     const itemList = document.querySelectorAll('.content_item')
+    const disc = document.getElementById('dis')
+    const data = new Date()
+    let message = ''
+    if(data.getMonth() + 1 !== 12) {
+        message = '这一定是好个消息！'
+    } else {
+        if(parseInt(data.getDate()) < 24) {
+            message =  `今天是2022年12月${data.getDate()}日，距离考研还有${24 - parseInt(data.getDate())}天 <br>一个人很少能赢，但也总会有赢的时候<br>加油加油加油！`
+        } else if(parseInt(data.getDate()) === 24 || parseInt(data.getDate()) === 25){
+            message = '考试加油！'
+        } else {
+            message = '圣诞节快乐，元旦节也快乐哦!'
+        }
+    }
+    disc.innerHTML = message
     function showModal(type) {
         modal.style.top = '50%'
         if (type === 1) {
@@ -638,7 +650,7 @@ void main(){
 
     .WeChat-card {
         width: 500px;
-        height: 700px;
+        height: 400px;
         cursor: pointer;
     }
 
@@ -647,7 +659,7 @@ void main(){
         position: relative;
         transition: all 2.25s;
         color: #fff;
-        height: 500px;
+        height: 300px;
         border-radius: 30px;
         background-color: #444;
         padding: 5em;
@@ -668,6 +680,10 @@ void main(){
         padding: 2em;
         transform-style: preserve-3d;
         backface-visibility: hidden;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .title {
@@ -681,11 +697,16 @@ void main(){
 
     .back {
         transform: rotateY(0.5turn);
-        background-color: #c1c1c1;
+        background-color: #6c6c6c;
     }
 
     .description {
-        transform: translateZ(3rem);
+        transform: translateZ(1rem);
+        line-height: 2;
+    }
+
+    .happy {
+         transform: translateZ(3rem);
     }
 </style>
 
