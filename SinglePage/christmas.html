@@ -5,9 +5,7 @@
     <title>Christmas Wishes To Lyax</title>
     <link rel="icon" type="image/svg+xml" href="https://bexp.135editor.com/uploadword/5419088/202212/63a6c27e-82e0-4ea6-aa18-3200ac10006a.png?auth_key=1671983999-0-0-0713a2678dfd75aed99f522290ae044e&x-bce-process=image/auto-orient,o_1" />
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -116,7 +114,6 @@
                     <span id="codeThree" style="display: block;margin-top: 20px;"></span>
                 </div>
             </div>
-
             <a id="source-link" class="meta-link" onclick="opentips()">
                 <i class="fa-solid fa-link"></i>
                 <span>Tips</span>
@@ -269,7 +266,6 @@
                     <a href="http://www.freepik.com/">Illustrations from Freepik</a>
                     <a href="http://losttype.com/">Font from LostType</a>
                 </div>
-
                 <div class="gift">
                     <svg viewBox="-20 -50 490 557">
                         <g class="box">
@@ -388,7 +384,6 @@
         position: fixed;
         top: 0%;
         left: 0%;
-        /* transform: translate(50%, 50%); */
         line-height: 40px;
         color: #fff;
         display: none;
@@ -1245,7 +1240,6 @@
 <script src='https://cdn.jsdelivr.net/npm/three@0.145.0/examples/js/modifiers/CurveModifier.js'></script>
 <!-- 日记部分滚动 -->
 <script>
-
 // 日记部分
     const openThree = () => {
         const giftDom = document.getElementsByClassName('giftBox')[0]
@@ -1259,14 +1253,10 @@
     const upButton = document.querySelector('.up-button');
     const downButton = document.querySelector('.down-button');
     const slidesLength = slideRight.querySelectorAll('.rightContent').length;
-
     let activeSlideIndex = 0;
-
     slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`;
-
     upButton.addEventListener('click', () => changeSlide('up'));
     downButton.addEventListener('click', () => changeSlide('down'));
-
     const changeSlide = (direction) => {
         const sliderHeight = sliderContainer.clientHeight;
         if (direction === 'up') {
@@ -1280,11 +1270,8 @@
                 activeSlideIndex = slidesLength - 1;
             }
         }
-
-        slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight
-            }px)`;
-        slideLeft.style.transform = `translateY(${activeSlideIndex * sliderHeight
-            }px)`;
+        slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`;
+        slideLeft.style.transform = `translateY(${activeSlideIndex * sliderHeight}px)`;
     };
 </script>
 <script>
@@ -1301,7 +1288,6 @@
         if (number < 0) {
             document.getElementById('codeThree').innerHTML = '大点'
         }
-
     }
     const modal = document.getElementById('modal')
     let num = 0
@@ -1317,17 +1303,12 @@
     function showCodepen() {
         if (!num) {
             modal.style.top = '50%'
-            //   3s关闭提示信息
             setTimeout(() => {
                 closeTips()
             }, 5000)
         } else {
-            // const giftDom = document.getElementsByClassName('giftBox')[0]
-            // giftDom.style.visibility = 'visible'
             const input = document.querySelector('.nameInput').value
             if (input === 'liyaxuan1206') {
-                // const giftDom = document.getElementsByClassName('giftBox')[0]
-                // giftDom.style.visibility = 'visible'
                 const somewords = document.getElementsByClassName('somewords')[0]
                 somewords.style.display = 'block'
             } else {
@@ -1338,9 +1319,7 @@
                 }
             }
             console.log(input)
-
         }
-
     }
     function closeModal() {
         num = 1
@@ -1455,9 +1434,7 @@
                     scale: 0,
                 });
             }
-
             copyAnim();
-
         }
 
         function openBox() {
@@ -1811,13 +1788,11 @@
             leaveOverlay(false, this);
             svg.style.cursor = "url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/cross.png) 20 20, auto";
         }
-
         function unZoom() {
             zoom = false;
             svg.style.cursor = "auto";
             TweenMax.to(svg, 2, { attr: { viewBox: "0 0 1600 900" }, ease: Power3.easeOut });
         }
-
         var overlays = svg.querySelectorAll("#overlays > g");
         for (var i = 0; i < overlays.length; i++) {
             overlays[i].addEventListener("mouseenter", enterOverlay);
@@ -1831,14 +1806,11 @@
         document.querySelector(".scene").style.display = "block";
 
     }
-
     //preload images
     var glass = new Image()
     glass.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/glass-01.png";
     var cross = new Image()
     cross.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/cross.png";
-
-
     window.onload = function () {
         init();
     };
@@ -1922,12 +1894,8 @@
                 (d = new THREE.EffectComposer(n)).renderToScreen = !1, d.addPass(u), d.addPass(R);
             const H = new THREE.ShaderPass(new THREE.ShaderMaterial({
                 uniforms: {
-                    baseTexture: {
-                        value: null
-                    },
-                    bloomTexture: {
-                        value: d.renderTarget2.texture
-                    }
+                    baseTexture: {value: null},
+                    bloomTexture: {value: d.renderTarget2.texture}
                 },
                 vertexShader: document.getElementById("vertexshader").textContent,
                 fragmentShader: document.getElementById("fragmentshader").textContent,
@@ -2028,7 +1996,6 @@
 </script>
 <script>
     const gallery = document.getElementById("gallery");
-
     window.onmousemove = e => {
         const mouseX = e.clientX,
             mouseY = e.clientY;
@@ -2052,5 +2019,4 @@
     }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"> </script>
-
 </html>
