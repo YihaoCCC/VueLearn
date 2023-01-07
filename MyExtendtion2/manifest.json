@@ -1,0 +1,30 @@
+{
+	"name": "Sugon Plantform Auto Full Password",
+	"manifest_version": 3,
+	"version": "1.0.0",
+	"description": "账号密码填充for Sugon",
+	"author": "陈奕豪",
+	"permissions": [
+		"notifications"
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"action": {
+		"default_icon": {
+			"32": "image/logo-透明.png"
+		},
+		"default_popup": "index.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://10.0.39.253:31666/login",
+				"https://10.0.39.253:31135/login"
+			],
+			"js": [
+				"content_script.js"
+			]
+		}
+	]
+}
