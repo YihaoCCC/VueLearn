@@ -15,7 +15,11 @@ var num = 0
  clipboardWrite = (value) => {
     window.navigator.clipboard.writeText(value)
     .then(() => {
-        chrome.runtime.sendMessage('', {type: 'notification'})
+        if(localStorage.getItem('notice') === 'false') {
+            console.log('not show notification');
+        } else {
+            chrome.runtime.sendMessage('', {type: 'notification'})
+        }
         console.log('Text copied to clipboard');
     })
     .catch(err => {

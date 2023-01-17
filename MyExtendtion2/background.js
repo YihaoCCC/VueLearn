@@ -4,8 +4,8 @@ chrome.runtime.onMessage.addListener(data => {
             '',
             {
                 type: 'basic',
-                title: '来自yh的通知',
-                message: '已自动赋值admin密码：keystone.......',
+                title: '来自Sugon的通知',
+                message: '已自动复制admin密码：keystone.......',
                 iconUrl: "../image/logo-透明.png"
             }
         );
